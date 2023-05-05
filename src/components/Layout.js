@@ -1,24 +1,49 @@
 import { Link, Outlet } from "react-router-dom";
+import DropDownMenu from './DropDownMenu.js';
 import "./Layout.css"
+import LogIn from "./LogIn.js";
+import LanguageIcon from '@mui/icons-material/Language';
+
 
 const Layout = () => {
 
     return (
-        <div className="layoutWrapper">
-            <nav className="header">
-                <Link className="logoLink" to="/">
-                    <h1>
-                        Logo go back to home page
-                    </h1>
-                </Link>
+        <div className='layoutWrapper'>
+            <div className='headerWrapper'>
+                <nav className='header'>
 
-                <Outlet />
+                    <div className='headerLeft'>
+                        <Link className='logoLink' to='/'>Logo go back to home page</Link>
+                    </div>
 
-                
-            </nav>
+                    <div className='headerCenter'>
+                        <Link className='homeLink' to='/'>Home</Link>
+                        <Link className='aboutLink' to='/about'>About</Link>
+                        <Link className='agenciesLink' to='/agencies'>Agencies</Link>
+                        <Link className='contactLink' to='/contact'>Contact</Link>
+                    </div>
+
+                    <div className='headerRight'>  
+                        <LogIn className='logInLink'/>
+                    </div>                    
+                </nav>      
+            </div>
+
+            <Outlet />
+
+            <div className="footer">
+                <div className="footerLeft">
+                    <p>© 2023 AuPair Blog</p>
+                    <p> · Terms · Privacy · Your Privacy Choices </p>
+                </div>
+
+                <div className="footerRight">
+                    <LanguageIcon />
+                    <p> English (US) </p>
+                </div>
+            </div>
 
         </div>
-
     )
 }
 

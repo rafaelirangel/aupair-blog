@@ -1,0 +1,69 @@
+/* .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 55px;
+    z-index: 100;
+    box-sizing: border-box;
+} */
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 20px;
+    position: sticky;
+    width: 100%;
+    background-color: #002B5B;
+}
+
+.headerCenter{
+    display: flex;
+    justify-content: space-between;
+    /* max-width: fit-content; */
+    width:25%;
+    /* margin-left: 20%; */
+}
+
+.logoLink, 
+.homeLink,
+.aboutLink,
+.agenciesLink,
+.contactLink{
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.footer {
+    display: flex;
+    border-top: 1px solid lightgray;
+    padding: 20px;
+    background-color: white;
+    text-align: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #159895;
+}
+
+.footerLeft {
+    display: flex;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.footerRight {
+    display: flex;
+    align-items: center;
+    width: 15vw;
+    margin-right: 80px;
+}
+
+.footerRight p {
+    padding: 0 3px;
+    font-weight: bold;
+}
