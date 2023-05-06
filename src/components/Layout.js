@@ -18,8 +18,8 @@ const Layout = () => {
 
                     <div className='headerCenter'>
                         <Link className='homeLink' to='/'>Home</Link>
-                        <Link className='aboutLink' to='/about'>About</Link>
-                        <Link className='agenciesLink' to='/agencies'>Agencies</Link>
+                        <Link className='aboutLink' to='/about'>About Us</Link>
+                        <Link className='agenciesLink' to='/agencies'>Au Pair Program</Link>
                         <Link className='contactLink' to='/contact'>Contact</Link>
                     </div>
 

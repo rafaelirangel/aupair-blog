@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Inconsolata:wght@300;400&family=Lobster&family=Montserrat:wght@200;400&family=PT+Sans+Narrow&family=Poppins&family=Raleway&family=Source+Sans+Pro:wght@300&family=Spirax&display=swap');
 
-
 h1 {
     text-align: center;
     margin-bottom: 20px;
@@ -9,6 +8,7 @@ h1 {
 .aboutWrapper{
     margin: 130px 80px;
     align-items: center;
+   
 }
 
 .aboutContent{

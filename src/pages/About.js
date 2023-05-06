@@ -3,9 +3,7 @@ import './About.css'
 const About = () => {
     return(
         <div className="aboutWrapper">
-            <h1 className='aboutTitle'>
-                About
-            </h1>
+            <h1 className='aboutTitle'>About Us</h1>
             <article className='aboutContent'>
                 Welcome to our Au Pair blog webpage, where we strive to connect and support individuals participating in the Au Pair program worldwide. Our social platform uses location-based features to facilitate connections between Au Pairs nearby, allowing them to exchange ideas and gain new experiences.
                 We understand that participating in the Au Pair program can be both exhilarating and daunting, especially when in a new country. Therefore, our platform prioritizes safety by providing a supportive community where individuals can connect and share their experiences while navigating their new environment.
