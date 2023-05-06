@@ -1,22 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Inconsolata:wght@300;400&family=Lobster&family=Montserrat:wght@200;400&family=PT+Sans+Narrow&family=Poppins&family=Raleway&family=Source+Sans+Pro:wght@300&family=Spirax&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Inconsolata:wght@300;400&family=Lobster&family=Montserrat:wght@200;400&family=PT+Sans+Narrow&family=Poppins&family=Quicksand:wght@400;500&family=Raleway&family=Source+Sans+Pro:wght@300&family=Spirax&display=swap');
 
-h1 {
+.aboutUsTitle {
     text-align: center;
     margin-bottom: 20px;
+    color: #e9c46a;
+    font-family: 'Courgette';
 }
 
-.aboutWrapper{
-    /* margin: 130px 80px; */
+.aboutUsWrapper{
     padding: 100px;
     align-items: center;
-    background-image: url('../img/gradient-watercolor-background_87374-75.avif');
-    background-size: 100vw 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url('../img/wallpaper-background-several-transparent-circles_58702-7112.avif');}
 
-}
-
-.aboutContent{
+.aboutUsContent{
     font-size: 18px;
     font-family: 'Inconsolata', sans-serif;
     line-height: 1.7;
@@ -24,15 +21,16 @@ h1 {
 }
 
 @media(max-width: 748px){
-    h1{
-        font-size: 22px;
+    .aboutUsTitle{
+        font-size: 24px;
     }
 
-    .aboutWrapper {
-            margin: 60px 40px;
+    .aboutUsWrapper {
+        padding: 30px;
         }
 
-    .aboutContent{
-        font-size: 16px;
+    .aboutUsContent{
+        font-size: 15px;
+        font-weight: 500;
     }    
 }

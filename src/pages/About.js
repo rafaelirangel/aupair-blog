@@ -2,9 +2,9 @@ import './About.css'
 
 const About = () => {
     return(
-        <div className="aboutWrapper">
-            <h1 className='aboutTitle'>About Us</h1>
-            <article className='aboutContent'>
+        <div className="aboutUsWrapper">
+            <h1 className='aboutUsTitle'>About Us</h1>
+            <article className='aboutUsContent'>
                 Welcome to our Au Pair blog webpage, where we strive to connect and support individuals participating in the Au Pair program worldwide. Our social platform uses location-based features to facilitate connections between Au Pairs nearby, allowing them to exchange ideas and gain new experiences.
                 We understand that participating in the Au Pair program can be both exhilarating and daunting, especially when in a new country. Therefore, our platform prioritizes safety by providing a supportive community where individuals can connect and share their experiences while navigating their new environment.
                 Our blog is a treasure trove of informative articles, tips, and resources that cover a wide range of topics related to the Au Pair program. From finding a host family to cultural exchange and language learning, we aim to help you make the most of your experience. Whether you're a first-time Au Pair or a seasoned participant, our community is open to all.
