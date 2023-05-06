@@ -19,7 +19,7 @@ const Layout = () => {
                     <div className='headerCenter'>
                         <Link className='homeLink' to='/'>Home</Link>
                         <Link className='aboutLink' to='/about'>About Us</Link>
-                        <Link className='agenciesLink' to='/agencies'>Au Pair Program</Link>
+                        <Link className='agenciesLink' to='/aupairProgram'>Au Pair Program</Link>
                         <Link className='contactLink' to='/contact'>Contact</Link>
                     </div>
 

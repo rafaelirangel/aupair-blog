@@ -1,6 +1,6 @@
-import { FiveG } from '@mui/icons-material'
+
 import './Contact.css'
-import { Like, Twitter } from '@icon-park/react';
+import { Twitter } from '@icon-park/react';
 import { Github } from '@icon-park/react';
 import { LinkedIn } from '@mui/icons-material';
 import { Link } from 'react-router-dom';

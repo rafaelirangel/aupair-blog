@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Inconsolata:wght@300;400&family=Lobster&family=Montserrat:wght@200;400&family=PT+Sans+Narrow&family=Poppins&family=Quicksand:wght@400;500&family=Raleway&family=Source+Sans+Pro:wght@300&family=Spirax&display=swap');
+
+.aupairContentWrapper{
+    background-image: url('../img/abstract-blur-empty-green-gradient-studio-well-use-as-background-website-template-frame-business-report_1258-54634.avif');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.aupairAbout{
+    
+}
+
+.countryFlag{
+    width: 2em;
+    height: 2em;
+}
+
+.countries{
+    display: flex;
+    align-items: center;
+}
+
+
+.globeImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+}
+
+.aboutContent{
+    margin-bottom: 30px;
+}
+.aboutTitle{
+/*     
+    padding: 20px;
+    margin: 30px auto; */
+}
+
+.countriesContents{
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        border: 1px solid #ccc;
+        max-width: 260px;
+        max-height: fit-content;
+        justify-content: center;
+        padding: 25px;
+        margin: 20px;
+
+}
+
+.aboutCountriesTitle{
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+   
+}
+
+.countryName{
+    font-size: 20px;
+    margin-left: 15px;
+    line-height: 1.5;
+    font-style: italic;
+}
