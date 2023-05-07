@@ -1,19 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Inconsolata:wght@300;400&family=Lobster&family=Montserrat:wght@200;400&family=PT+Sans+Narrow&family=Poppins&family=Quicksand:wght@400;500&family=Raleway&family=Source+Sans+Pro:wght@300&family=Spirax&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Crimson+Text:wght@400;700&family=Inconsolata:wght@300;400&family=Lobster&family=Montserrat:wght@200;400&family=PT+Sans+Narrow&family=Pacifico&family=Poppins&family=Quicksand:wght@400;500&family=Raleway&family=Source+Sans+Pro:wght@300&family=Spirax&display=swap');
 
-.contactImg{
+.contactImg {
     height: 330px;
     width: 100%;
 }
 
-.contacTitle{
-   color: #e9c46a;
-   margin: 40px auto;
-   font-family: 'Courgette';
-   font-weight: 300px;
+.contactContentWrapper {
+    padding: 50px;
+    background-image: url('../img/bokeh-blurred-defocused-lights-blue-background-can-also-be-used-as-overlay_527140-330.jpg');
 }
 
-.name{
+.contacTitle {
+    color: #e9c46a;
+    margin: 20px auto;
+    font-family: 'Courgette';
+    font-weight: 300px;
+    text-align: center;
+}
+
+.name {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,7 +29,7 @@
 }
 
 .rafaInfo,
-.nateInfo{
+.nateInfo {
     margin: 20px;
     margin-bottom: 50px;
     border-radius: 10px;
@@ -31,10 +37,10 @@
     overflow: hidden;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     border: 1px solid #ccc;
-    min-width: 300px;
+    min-width: 250px;
     min-height: 300px;
     justify-content: center;
-    padding: 25px;   
+    padding: 25px;
 }
 
 .rafaInfo:hover,
@@ -48,7 +54,7 @@
 
 .github,
 .linkdin,
-.twitter{
+.twitter {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,7 +66,7 @@
 
 .githubLink,
 .linkedinLink,
-.twitterLink{
+.twitterLink {
     text-decoration: none;
     font-weight: 500;
     font-size: 22px;
@@ -69,9 +75,42 @@
     font-family: 'Inconsolata', sans-serif;
 }
 
-.contactContent{
+.contactContent {
     display: flex;
     justify-content: center;
 }
 
+@media(max-width: 748px) {
+    .contacTitle {
+        font-size: 24px;
+    }
 
+    .contactContent {
+        display: inline;
+    }
+
+    .rafaInfo,
+    .nateInfo {
+        margin: 10px;
+        margin-bottom: 30px;
+        min-width: 150px;
+        min-height: 200px;
+        padding: 15px;
+        border: 1px solid #e9c46a;
+    }
+
+    .name {
+        font-size: 23px;
+    }
+
+    .githubLink,
+    .linkedinLink,
+    .twitterLink {
+        font-size: 20px;
+    }
+
+   .contactImg {
+       height: 280px;
+       width: 100%;
+   }
+}
