@@ -21,6 +21,7 @@ const AuPair = () => {
                 </div>
 
                 <div className='cardsWrapper'>
+                    {/* Countries Card */}
                     <div className='countriesContentWrapper' >
                         <h1 className='aboutCountriesTitle'>Most popular countries to become an Au Pair abroad</h1>
                         <article className='countriesContent'>
@@ -86,6 +87,7 @@ const AuPair = () => {
                         </article>
                     </div>
 
+                    {/* Au Pair Card */}
                     <div className='aupairGainWrapper'>
                         <h1 className='gainTitle'>Au Pairs gain</h1>
                         <div className='gains'>
@@ -118,6 +120,7 @@ const AuPair = () => {
 
                     </div>
 
+                    {/* Host Family Card */}
                     <div className='hostFamiliesGainWrapper'>
                         <h1 className='gainTitle'> Host families gain</h1>
                         <div className='gains'>
@@ -146,8 +149,6 @@ const AuPair = () => {
                                 Someone to help with the kids chores
                             </p>
                         </div>
-
-
                     </div>
                 </div>
             </div>

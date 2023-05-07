@@ -1,7 +1,5 @@
-
 import './Contact.css'
-import { Twitter } from '@icon-park/react';
-import { Github } from '@icon-park/react';
+import { Twitter, Github } from '@icon-park/react';
 import { LinkedIn } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import contactImg from '../img/contact-us.jpg'
@@ -16,6 +14,8 @@ const Contact = () => {
                 <h1 className='contacTitle'>Need help with anything? Don't worry, contact US</h1>
 
                 <div className='contactContent'>
+
+                    {/* Card 1 */}
                     <div className='rafaInfo'>
                         <h2 className='name'> Rafaeli Rangel </h2>
                         <div className='github'>
@@ -32,6 +32,7 @@ const Contact = () => {
                         </div>
                     </div>
 
+                    {/* Card 1 */}
                     <div className='nateInfo'>
                         <h2 className='name'> Nathen Leonard </h2>
                         <div className='github'>
