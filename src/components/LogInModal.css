@@ -1,0 +1,118 @@
+.modalWrapper {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContent{
+    width: fit-content;
+    height: 400px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+}
+
+.loginTitle{
+    text-align: center;
+    font-size: 30px;
+    margin: 30px auto;
+    font-family: 'Mate SC', sans-serif;
+}
+
+.loginName,
+.password,
+.email{
+        font-family: 'Inconsolata', sans-serif; 
+        font-size: 18px;
+        font-weight: 600;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto;
+        border-color:lightseagreen ;
+}
+
+.signinBtn,
+.signupBtn {
+    background-color: #e9c46a;
+    font-size: 18px;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 30px auto;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    display: flex;
+    text-decoration: none;
+    font-family: 'Inconsolata', sans-serif;
+    /* border: 2px solid black; */
+}
+
+.signinBtn:hover,
+.signupBtn:hover {
+    transform: scale(1.05);
+}
+
+.userInput{
+    padding: 7px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    outline-color: lightseagreen;
+    border-color: black;
+   
+}
+
+.closeBtn{
+    font-size: 18px;
+    padding-top: 10px;
+    color: black;
+    cursor: pointer;
+    margin-top: 10px;
+    text-decoration: none;
+    background:none;
+    display: flex;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.closeBtn:hover {
+   color: grey;
+}
+
+.siginContent{
+    background-color:white;
+    padding: 20px;
+}
+
+.signupWrapper{
+    background-color: lightseagreen;
+    padding: 20px;
+}
+
+.signupContent{
+    text-align: center;
+    justify-content: center;
+}
+
+.signupTitle{
+    font-size: 26px;
+    margin: 15px auto;
+}
+
+.signupText{
+    font-size: 20px;
+}
+
