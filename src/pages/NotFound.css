@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Courgette&family=Crimson+Text:wght@400;700&family=Inconsolata:wght@300;400&family=Lobster&family=Montserrat:wght@200;400&family=PT+Sans+Narrow&family=Pacifico&family=Poppins&family=Quicksand:wght@400;500&family=Raleway&family=Source+Sans+Pro:wght@300&family=Spirax&display=swap');
+
+.notFoundImg {
+    display: flex;
+    margin: 10px auto;
+}
+
+.message {
+    font-family: 'Cabin Sketch', sans-serif;
+    font-size: 90px;
+    text-align: center;
+}
+
+.content404 {
+    align-items: center;
+    justify-content: center;
+}
+
+.notFoundBtn {
+    background-color: #e9c46a;
+    font-size: 25px;
+    padding: 25px 45px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 20px auto;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    display: flex;
+    text-decoration: none;
+}
+
+button {
+    border: none;
+}
+
+.notFoundBtn:hover {
+    transform: scale(1.05);
+}
+
+.notFoundLink {
+    text-decoration: none;
+}
+
+@media(max-width: 768px) {
+
+    .message {
+        font-size: 70px;
+        text-align: center;
+    }
+
+    .notFoundBtn {
+        font-size: 20px;
+        padding: 20px 40px;
+    }
+
+    .notFoundImg {
+        height: 330px;
+        width: 100%;
+    }
+
+}
