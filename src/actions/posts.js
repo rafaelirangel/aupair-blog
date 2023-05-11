@@ -16,13 +16,17 @@
 // store to retrieve a list of posts from an API and update the store's state with the returned data.
 
 import axios from "axios";
-import { GET_POSTS } from "./types";
+import { GET_POSTS, DELETE_POSTS } from "./types";
 
-//GET POSTS
+const client = axios.create({
+    baseURL: "http://127.0.0.1:8000"
+});
 
-const getPosts = () =>  dispatch => {
-    axios.get('/post/')
+
+export const getPosts = () =>  dispatch => {
+    client.get('/post/')
     .then(res => {
+        console.log(res.data)
         dispatch({
             type: GET_POSTS,
             payload: res.data
@@ -31,4 +35,18 @@ const getPosts = () =>  dispatch => {
     .catch(err => console.log(err));
 }
 
-export default getPosts
+//DELETE POSTS
+export const deletePosts = (id) => dispatch => {
+    client
+        .get(`/post/${id}`)
+        .then(res => {
+            console.log(res.data)
+            dispatch({
+                type: DELETE_POSTS,
+                payload: id
+            });
+        })
+        .catch(err => console.log(err));
+        
+}
+

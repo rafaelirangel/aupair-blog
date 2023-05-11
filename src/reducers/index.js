@@ -6,11 +6,10 @@
 // A reducer file typically contains the definition of the reducer function(s) for a particular slice of the 
 // application state.It defines how the state should be updated when a specific action is dispatched.
 
-
-
+//passing all the reducers file into this index.js
 import { combineReducers } from "redux";
-import posts from './posts';
+import postsReducer from './posts';
 
 export default combineReducers({
-    posts:posts 
+    postsReducer
 })
