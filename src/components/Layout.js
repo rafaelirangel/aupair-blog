@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import "./Layout.css"
-import LogIn from "./LogIn.js";
-import SignUp from "./SignUp";
+import LogIn from "./accounts/LogIn.js";
+import SignUp from "./accounts/SignUp";
 import LanguageIcon from '@mui/icons-material/Language';
 
 
