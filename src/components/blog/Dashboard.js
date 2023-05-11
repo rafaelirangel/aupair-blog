@@ -5,7 +5,7 @@ import Post from './Post'
 const Dashboard = () => {
   return (
     <div>
-      {/* <PostForm /> */}
+      <PostForm />
       <Post />
     </div>
   )
