@@ -1,11 +1,11 @@
 import React from 'react'
-import Form from './Form'
+import PostForm from './PostForm'
 import Post from './Post'
 
 const Dashboard = () => {
   return (
     <div>
-      <Form />
+      {/* <PostForm /> */}
       <Post />
     </div>
   )

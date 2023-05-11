@@ -1,4 +1,4 @@
-import {GET_POSTS, DELETE_POSTS} from '../actions/types.js';
+import {GET_POSTS, DELETE_POSTS, ADD_POSTS} from '../actions/types.js';
 
 
 // This is a reducer function for handling the posts state in a Redux store.The reducer is responsible for updating the state based on the actions dispatched to the store.
@@ -31,6 +31,13 @@ export default function (state = initialState, action) {
                 ...state,
                 posts: state.posts.filter((post) => post.id !== action.payload)
             };
+
+        case ADD_POSTS:
+            return{
+                ...state,
+                posts: [...state.posts, action.payload]
+            };   
+
         default:
             return state;
     }
