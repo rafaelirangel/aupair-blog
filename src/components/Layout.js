@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
-import DropDownMenu from './DropDownMenu.js';
 import "./Layout.css"
 import LogIn from "./LogIn.js";
+import SignUp from "./SignUp";
 import LanguageIcon from '@mui/icons-material/Language';
 
 
@@ -25,6 +25,7 @@ const Layout = () => {
 
                     <div className='headerRight'>  
                         <LogIn className='logInLink'/>
+                        <SignUp className='signUpLink' />
                     </div>                    
                 </nav>      
             </div>
