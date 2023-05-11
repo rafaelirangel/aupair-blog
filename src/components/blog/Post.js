@@ -59,7 +59,7 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
                             {/* add functionality to these btns and incread amount of comments */}
                             <div className='postFooter'>
                                 <div className='postFooterLeft'>
-                                    <button onClick={handleLikeBtn}className='likeBtn'>{likeCount}&#10084;</button>
+                                    <button onClick={handleLikeBtn} className='likeBtn'><span className='likeCount'>{likeCount}</span>&#10084;</button>
                                     <button className='commentBtn'>comments</button>
                                 </div>
 

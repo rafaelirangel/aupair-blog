@@ -6,13 +6,14 @@ li {
 
 .postContentWrapper {
     display: flex;
+    /* flex-wrap: wrap; */
     border: 1px solid #0dc6c3;
-    height: 350px;
+    height: fit-content;
     margin: 30px;
 }
 
-.postContent{
-    margin: 20px;
+.postContent {
+    margin: 20px 20px;
 }
 
 .postTitle {
@@ -27,20 +28,26 @@ li {
     justify-content: center;
     align-items: center;
     width: 50%;
+    height: 350px;
+    /* min-height: fit-content; */
 }
 
-.postDescription{
+.postDescription {
     font-family: 'Inconsolata', sans-serif;
     line-height: 1.3;
-    margin: 18px auto;
+    /* margin: 18px auto; */
     font-size: 18px;
+    margin: 15px 0;
 }
 
-.postInfo{
-    margin: 15px auto;
+.postInfo {
+    margin: 15px 0px;
+    border-bottom: 1px solid rgb(15, 91, 91);
+    ;
+    /* min-width: 50%; */
 }
 
- .userImg {
+.userImg {
     border-radius: 50%;
     max-width: 50px;
     height: 50px;
@@ -49,25 +56,25 @@ li {
 
 .userInfo {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
 }
 
-.postHeader{
+.postHeader {
     margin-left: 15px;
 }
 
 .userProfileName,
-.postDate{
+.postDate {
     font-size: 13px;
 }
 
-.postFooter{
+.postFooter {
     display: flex;
     justify-content: space-between;
 }
 
-.deleteBtn{
+.deleteBtn {
     text-decoration: none;
     cursor: pointer;
     background-color: rgb(15, 91, 91);
@@ -76,9 +83,50 @@ li {
     border-radius: 10px;
 }
 
-.likeBtn{
- background-color: white;
- font-size: 23px;
- color: rgb(15, 91, 91);
- cursor: pointer;
+.likeBtn {
+    background-color: white;
+    font-size: 23px;
+    color: rgb(15, 91, 91);
+    cursor: pointer;
+}
+
+.likeCount {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+@media(max-width: 768px) {
+
+    .postContentWrapper {
+        display: inline;
+        width: 300px;
+        height: fit-content;
+        /* margin: 10px 0; */
+    }
+
+    .postDescription {
+
+        font-size: 15px;
+        margin: 10px 0;
+    }
+
+    .postTitle {
+        font-size: 17px;
+    }
+
+    .postImg {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 300px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .postContent {
+        margin: 0;
+    }
+
 }
