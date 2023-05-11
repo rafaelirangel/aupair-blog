@@ -34,9 +34,13 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
                 {posts.map((post) => (
                     <li key={post.id} className='postContentWrapper'>
 
-                        {/* This img is hardcoded till we fix the img issue */}
-                        <img className='postImg' src={contactImg}></img>
-                        {/* <img src={post.post_img} alt={post.title} className='postImg' /> */}
+{post.post_img ? (
+  <img src={post.post_img} alt={post.title} className='postImg' />
+) : (
+  <img src={contactImg} alt={post.title} className='postImg' />
+)}
+
+                        
                         <div className='postContent'>
                             <div className='userInfo'>
                                 <div className='profileImg'>
