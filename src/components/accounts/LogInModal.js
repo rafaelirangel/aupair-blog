@@ -14,7 +14,6 @@ const LogInModal = (props) => {
             <div className='modalContent'>
                 <div className='siginContent'>
                     <button className='closeBtn' onClick={handleClose}>X</button>
-
                     <h2 className='loginTitle'>Login to Your Account</h2>
                     <form className='loginForm'>
                         <label className='email'>

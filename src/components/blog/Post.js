@@ -39,8 +39,13 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
     };
 
     return (
-        <div className='postWrapper'>
+
+        <div>
+
             <h1 className='pageTitle'>All Posts</h1>
+        
+        <div className='postWrapper'>
+            {/* <h1 className='pageTitle'>All Posts</h1> */}
             <ul>
                 {posts.map((post) => (
                     <li key={post.id} className='postContentWrapper'>
@@ -55,7 +60,7 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
                             <div className='userInfo'>
                                 <div className='profileImg'>
                                     {/* This img is hardcoded till we fix the img issue */}
-                                    {/* <img className='userImg' src={contactImg} alt="User profile"/> */}
+                                    <img className='userImg' src={blogImg} alt="User profile"/>
                                 </div>
                                
                                <div className='postHeader'> 
@@ -99,6 +104,7 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
                     </li>
                 ))}
             </ul>
+        </div>
         </div>
     );
 }
