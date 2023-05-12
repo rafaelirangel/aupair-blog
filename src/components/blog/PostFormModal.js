@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addPosts } from '../../actions/posts.js';
 import './PostFormModal.css'
+import axios from 'axios'
 
 const PostFormModal = ({ addPosts, onClose }) => {
     const [formData, setFormData] = useState({
@@ -31,18 +32,29 @@ const PostFormModal = ({ addPosts, onClose }) => {
         }
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         const post = { title, message, post_img };
-        addPosts(post);
-        setFormData({
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('message', message);
+        formData.append('post_img', post_img);
+        try {
+          const response = await axios.post('/api/posts', formData);
+          // handle success response
+          console.log(response.data);
+          setFormData({
             post_img: '',
             title: '',
             message: '',
-        });
-        setImageURL(''); // clear the image preview
-        handleClose(); // close the modal
-    };
+          });
+          setImageURL('');
+          handleClose();
+        } catch (error) {
+          // handle error response
+          console.log(error);
+        }
+      };
 
     const handleClose = () => {
         if (onClose) {

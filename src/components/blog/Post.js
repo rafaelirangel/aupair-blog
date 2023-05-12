@@ -1,9 +1,11 @@
 import './Post.css'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getPosts, deletePosts, addPosts } from "../../actions/posts";
 import blogImg from '../../img/blogging.jpg'
+import PostFormModal from './PostFormModal';
+import axios from 'axios';
 
 
 
