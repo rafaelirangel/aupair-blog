@@ -22,7 +22,7 @@ const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
 });
 
-
+//GET POSTS
 export const getPosts = () =>  dispatch => {
     client
     .get('/post/')
