@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { getPosts, deletePosts, addPosts } from "../../actions/posts";
-import contactImg from '../../img/contact-us.jpg'
+import blogImg from '../../img/blogging.jpg'
 
 
 
@@ -19,8 +19,8 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
     const [likeCount, setLikeCount] = useState(0);
     const [comments, setComments] = useState([]);
 
+    // Update like count when button is clicked
     const handleLikeBtn = () => {
-        // Update like count when button is clicked
         if (likeCount === 0) {
             setLikeCount(1);
         } else {
@@ -48,14 +48,14 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
                         {post.post_img ? (
                             <img src={post.post_img} alt={post.title} className='postImg' />
                         ) : (
-                            <img src={contactImg} alt={post.title} className='postImg' />
+                            <img src={blogImg} alt={post.title} className='postImg' />
                         )}
 
                         <div className='postContent'>
                             <div className='userInfo'>
                                 <div className='profileImg'>
                                     {/* This img is hardcoded till we fix the img issue */}
-                                    <img className='userImg' src={contactImg} alt="User profile"/>
+                                    {/* <img className='userImg' src={contactImg} alt="User profile"/> */}
                                 </div>
                                
                                <div className='postHeader'> 
