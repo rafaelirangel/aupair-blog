@@ -29,18 +29,19 @@ const Form = ({ addPosts }) => {
     const onChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
+    const [imageURL, setImageURL] = useState('');
 
-    // const handleImageChange = (e) => {
-    //     const imageFile = e.target.files[0];
-    //     if (imageFile) {
-    //         setFormData({ ...formData, post_img: imageFile });
-    //         const reader = new FileReader();
-    //         reader.onloadend = () => {
-    //             setImagePreview(reader.result);
-    //         };
-    //         reader.readAsDataURL(imageFile);
-    //     }
-    // };
+    const handleImageChange = (e) => {
+        const imageFile = e.target.files[0];
+        if (imageFile) {
+            setFormData({ ...formData, post_img: imageFile });
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImageURL(reader.result);
+            };
+            reader.readAsDataURL(imageFile);
+        }
+    };
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -77,7 +78,7 @@ const Form = ({ addPosts }) => {
                         value={message}
                     />
                 </div>
-                {/* <div className="form-group">
+                <div className="form-group">
                     <label>Image</label>
                     <input
                         className="form-control-file"
@@ -86,15 +87,15 @@ const Form = ({ addPosts }) => {
                         name="image"
                         onChange={handleImageChange}
                     />
-                    {imagePreview && (
+                    {imageURL && (
                         <img
-                            src={imagePreview}
+                            src={imageURL}
                             alt="Preview"
                             className="mt-2 mb-2"
                             style={{ maxHeight: '200px' }}
                         />
                     )}
-                </div> */}
+                </div>
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary">
                         Submit

@@ -17,6 +17,7 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
 
     // Add state for like count
     const [likeCount, setLikeCount] = useState(0);
+    const [comments, setComments] = useState([]);
 
     const handleLikeBtn = () => {
         // Update like count when button is clicked
@@ -27,6 +28,16 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
         }
     }
 
+    const handleCommentSubmit = (e) => {
+        e.preventDefault();
+        const commentInput = e.target.elements.commentInput;
+        const newComment = commentInput.value.trim();
+        if (newComment !== "") {
+            setComments([...comments, newComment]);
+            commentInput.value = "";
+        }
+    };
+
     return (
         <div className='postWrapper'>
             <h1 className='pageTitle'>All Posts</h1>
@@ -34,37 +45,47 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
                 {posts.map((post) => (
                     <li key={post.id} className='postContentWrapper'>
 
-{post.post_img ? (
-  <img src={post.post_img} alt={post.title} className='postImg' />
-) : (
-  <img src={contactImg} alt={post.title} className='postImg' />
-)}
+                        {post.post_img ? (
+                            <img src={post.post_img} alt={post.title} className='postImg' />
+                        ) : (
+                            <img src={contactImg} alt={post.title} className='postImg' />
+                        )}
 
-                        
                         <div className='postContent'>
                             <div className='userInfo'>
                                 <div className='profileImg'>
                                     {/* This img is hardcoded till we fix the img issue */}
-                                    <img className='userImg' src={contactImg}></img>
+                                    <img className='userImg' src={contactImg} alt="User profile"/>
                                 </div>
                                
                                <div className='postHeader'> 
                                     <h2 className='userProfileName'>User name goes here</h2>
                                     <p className='postDate'>{formatDate(post.created_at)}</p>
                                </div>
-                               
                             </div>
                             <div className='postInfo'>
                                 <h2 className='postTitle'>{post.title}</h2>
                                 <p className='postDescription'>{post.message}</p>
-                                {/* Add comments and like */}
+
+                                {/* Display comments */}
+                                <div className='postComments'>
+                                    {comments.map((comment, index) => (
+                                        <p key={index} className='commentText'>{comment}</p>
+                                    ))}
+                                </div>
                             </div>
 
-                            {/* add functionality to these btns and incread amount of comments */}
                             <div className='postFooter'>
                                 <div className='postFooterLeft'>
-                                    <button onClick={handleLikeBtn} className='likeBtn'><span className='likeCount'>{likeCount}</span>&#10084;</button>
-                                    <button className='commentBtn'>comments</button>
+                                    {/* Display like count */}
+                                    <button onClick={handleLikeBtn} className='likeBtn'>
+                                        <span className='likeCount'>{likeCount}</span>&#10084;
+                                    </button>
+
+                                    {/* Add comments button */}
+                                    <button onClick={handleCommentBtn} className='commentBtn'>
+                                        comments ({comments.length})
+                                    </button>
                                 </div>
 
                                 <div className='postFooterRight'>
