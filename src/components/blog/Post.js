@@ -83,9 +83,12 @@ function PostList({ posts, getPosts, deletePosts, addPosts }) {
                                     </button>
 
                                     {/* Add comments button */}
-                                    <button onClick={handleCommentBtn} className='commentBtn'>
-                                        comments ({comments.length})
-                                    </button>
+                                    <form onSubmit={handleCommentSubmit}>
+                                        <input type="text" name="commentInput" placeholder="Add a comment" />
+                                        <button type="submit" className='commentBtn'>
+                                            Add Comment
+                                        </button>
+                                    </form>
                                 </div>
 
                                 <div className='postFooterRight'>
