@@ -21,6 +21,8 @@ This is a Au Pair blog webpage, where we strive to connect and support individua
     $ npm run start
 ```
 5. **Open in browser**
+http://127.0.0.1:3000/
+
 
 FIX THIS
     - Open [http://localhost:3000/](http://localhost:3000/) to view it in your browser.

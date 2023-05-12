@@ -51,7 +51,7 @@ export const deletePosts = (id) => dispatch => {
         
 }
 
-//ADD POSTS
+//ADD POSTS CREATE
 export const addPosts = (post) => dispatch => {
     client
         .post('/post/', post)
