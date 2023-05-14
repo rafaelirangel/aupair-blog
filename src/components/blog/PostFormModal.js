@@ -3,20 +3,26 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addPosts } from '../../actions/posts.js';
 import './PostFormModal.css'
-import axios from 'axios'
 
-const PostFormModal = ({ addPosts, onClose }) => {
+const PostFormModal = ({ addPosts, onClose}) => {
+
+    const handleClose = () => {
+        if (onClose) {
+            onClose();
+        }
+    }
+
     const [formData, setFormData] = useState({
-        post_img: '',
+        post_img: null,
         title: '',
         message: '',
     });
 
-
-    const { title, message, post_img } = formData;
+    const { post_img, title, message } = formData;
 
     const onChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
+
 
     const [imageURL, setImageURL] = useState('');
 
@@ -34,17 +40,10 @@ const PostFormModal = ({ addPosts, onClose }) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const post = { title, message, post_img };
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('message', message);
-        formData.append('post_img', post_img);
-        try {
-          const response = await axios.post('/api/posts', formData);
-          // handle success response
-          console.log(response.data);
-          setFormData({
-            post_img: '',
+        const post = { post_img, title, message };
+        addPosts(post);
+        setFormData({
+            post_img: null,
             title: '',
             message: '',
           });
@@ -55,12 +54,6 @@ const PostFormModal = ({ addPosts, onClose }) => {
           console.log(error);
         }
       };
-
-    const handleClose = () => {
-        if (onClose) {
-            onClose();
-        }
-    }
 
     return (
         <div className='modalWrapper'>
@@ -108,12 +101,10 @@ const PostFormModal = ({ addPosts, onClose }) => {
                             style={{ maxHeight: '100px' }}
                         />
                     )}
-
-                    <div className="form-group">
-                        <button type="submit" className="postFormBtn">
+                        <button type="submit" className="postFormBtn" >
                             Post
                         </button>
-                    </div>
+          
                 </form>
             </div>
         </div>

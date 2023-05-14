@@ -7,7 +7,6 @@ const Dashboard = () => {
   return (
     <div className='dashboardWrapper'>
       <Post />
-      <PostForm />      
     </div>
   )
 }

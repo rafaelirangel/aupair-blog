@@ -53,6 +53,7 @@ export const deletePosts = (id) => dispatch => {
 
 //ADD POSTS CREATE
 export const addPosts = (post) => dispatch => {
+    console.log(post)
     client
         .post('/post/', post)
         .then(res => {
@@ -67,5 +68,18 @@ export const addPosts = (post) => dispatch => {
 
 
 
+// //UPDATE POST
+// export const updatePost = (id, updatedPost) => dispatch => {
+//     client
+//         .put(`/post/${id}/`, updatedPost)
+//         .then(res => {
+//             console.log(res.data)
+//             dispatch({
+//                 type: UPDATE_POST,
+//                 payload: res.data
+//             });
+//         })
+//         .catch(err => console.log(err));
+// }
 
 

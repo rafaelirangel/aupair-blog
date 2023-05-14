@@ -1,33 +1,37 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import "./Layout.css"
 import LogIn from "./accounts/LogIn.js";
 import SignUp from "./accounts/SignUp";
 import LanguageIcon from '@mui/icons-material/Language';
-
+import logo from '../img/Example-logo.png'
 
 const Layout = () => {
+    const { pathname } = useLocation();
 
     return (
         <div className='layoutWrapper'>
             <div className='headerWrapper'>
+                <div className='headerLeft'>
+                    <Link className='logoLink' to='/'>
+                        <img className='logoImg' src={logo} />
+                    </Link>
+                </div>
+
                 <nav className='header'>
-
-                    <div className='headerLeft'>
-                        <Link className='logoLink' to='/'>Logo go back to home page</Link>
-                    </div>
-
                     <div className='headerCenter'>
-                        <Link className='homeLink' to='/'>Home</Link>
+                        <Link className='homeLink' to='/'>Blog</Link>
                         <Link className='aboutLink' to='/about'>About Us</Link>
                         <Link className='agenciesLink' to='/aupairProgram'>Au Pair Program</Link>
                         <Link className='contactLink' to='/contact'>Contact</Link>
                     </div>
 
-                    <div className='headerRight'>  
-                        <LogIn className='logInLink'/>
-                        <SignUp className='signUpLink' />
-                    </div>                    
-                </nav>      
+                    {pathname === '/blog' && (
+                        <div className='headerRight'>
+                            <LogIn className='logInLink' />
+                            <SignUp className='signUpLink' />
+                        </div>
+                    )}
+                </nav>
             </div>
 
             <Outlet />
@@ -43,7 +47,6 @@ const Layout = () => {
                     <p> English (US) </p>
                 </div>
             </div>
-
         </div>
     )
 }

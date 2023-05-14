@@ -8,7 +8,7 @@ import contactImg from '../img/contact-us.jpg'
 const Contact = () => {
     return (
         <div className='contactWrapper'>
-            <img className='contactImg' src={contactImg}></img>
+            <img className='contactImg' src={contactImg} />
 
             <div className='contactContentWrapper'>
                 <h1 className='contacTitle'>Need help with anything? Don't worry, contact US</h1>

@@ -56,7 +56,6 @@
     display: flex;
     text-decoration: none;
     font-family: 'Inconsolata', sans-serif;
-    /* border: 2px solid black; */
 }
 
 .signinBtn:hover {

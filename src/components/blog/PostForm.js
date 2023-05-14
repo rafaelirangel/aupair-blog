@@ -4,7 +4,6 @@ import PostFormModal from './PostFormModal.js'
 import React from 'react'
 import './PostForm.css'
 
-
 const PostForm = () => {
     const [showModal, setShowModal] = useState(false)
 
@@ -21,5 +20,4 @@ const PostForm = () => {
 }
 
 export default PostForm
-
 
