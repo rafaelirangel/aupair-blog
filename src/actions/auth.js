@@ -44,7 +44,7 @@ export const loadUser = () => (dispatch, getState) => {
 export const tokenConfig = (getState) => {
     // Get token from state
     console.log(getState())
-    const token = getState().auth.token;
+    const token = getState()?.auth?.token;
 
     // Headers
     const config = {
