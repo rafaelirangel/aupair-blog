@@ -3,6 +3,7 @@ import Home from "./Home.js";
 import About from "./About.js";
 import AuPair from "./AuPair.js";
 import Contact from "./Contact.js";
+import Blog from "./Blog.js";
 
 export{
     NotFound,
@@ -10,4 +11,5 @@ export{
     About,
     AuPair,
     Contact,
+    Blog
 }
