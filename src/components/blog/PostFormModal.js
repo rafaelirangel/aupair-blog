@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { addPosts } from '../../actions/posts.js';
 import './PostFormModal.css'
 
-const PostFormModal = ({ addPosts, onClose}) => {
+const PostFormModal = ({ addPosts, onClose }) => {
 
     const handleClose = () => {
         if (onClose) {
@@ -23,7 +23,6 @@ const PostFormModal = ({ addPosts, onClose}) => {
     const onChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
-
     const [imageURL, setImageURL] = useState('');
 
     const handleImageChange = (e) => {
@@ -38,7 +37,7 @@ const PostFormModal = ({ addPosts, onClose}) => {
         }
     };
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         const post = { post_img, title, message };
         addPosts(post);
@@ -46,14 +45,10 @@ const PostFormModal = ({ addPosts, onClose}) => {
             post_img: null,
             title: '',
             message: '',
-          });
-          setImageURL('');
-          handleClose();
-        } catch (error) {
-          // handle error response
-          console.log(error);
-        }
-      };
+        });
+        setImageURL(''); // clear the image preview
+        handleClose(); // close the modal
+    };
 
     return (
         <div className='modalWrapper'>
@@ -101,10 +96,10 @@ const PostFormModal = ({ addPosts, onClose}) => {
                             style={{ maxHeight: '100px' }}
                         />
                     )}
-                        <button type="submit" className="postFormBtn" >
-                            Post
-                        </button>
-          
+                    <button type="submit" className="postFormBtn" >
+                        Post
+                    </button>
+
                 </form>
             </div>
         </div>
@@ -116,3 +111,5 @@ PostFormModal.propTypes = {
 };
 
 export default connect(null, { addPosts })(PostFormModal);
+
+
