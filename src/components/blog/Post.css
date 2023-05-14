@@ -96,7 +96,7 @@ li {
 }
 
 .postTopContent{
-    margin: 50px auto;
+    margin: 0px auto;
     max-width: 700px;
     font-size: 25px;
     background-color: #0dc6c3;
@@ -106,6 +106,7 @@ li {
     line-height: 1.4;
     font-family: 'Signika Negative';
     font-weight: 400;
+    margin-bottom: 20px;
 }
 
 .postCenterContent {

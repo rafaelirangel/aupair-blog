@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { getPosts, deletePosts } from "../../actions/posts";
 import blogImg from '../../img/blogging.jpg'
-import { Link } from 'react-router-dom';
 import PostForm from './PostForm';
 import LogIn from '../accounts/LogIn';
 import SignUp from '../accounts/SignUp';
@@ -12,13 +11,14 @@ import SignUp from '../accounts/SignUp';
 
 function PostList({ posts, getPosts, deletePosts }) {
 
-    // The useEffect hook is used to fetch the posts from the server when the component is mounted.The getPosts function is passed as a dependency of the useEffect hook, so it will be called every time getPosts changes.This ensures that the posts are always up - to - date.
+    // Fetching the posts from the server when the component is mounted.
+    // The getPosts function is passed as a dependency of the useEffect hook, so it will be called every time getPosts changes.This ensures that the posts are always up - to - date.
     useEffect(() => {
         getPosts();
     }, [getPosts]);
 
 
-    // Add state for like count
+    // Adding states
     const [likeCount, setLikeCount] = useState(0);
     const [comments, setComments] = useState([]);
 
@@ -31,6 +31,7 @@ function PostList({ posts, getPosts, deletePosts }) {
         }
     }
 
+    // Comment 
     const handleCommentSubmit = (e) => {
         e.preventDefault();
         const commentInput = e.target.elements.commentInput;
@@ -41,8 +42,8 @@ function PostList({ posts, getPosts, deletePosts }) {
         }
     };
 
-    // The propTypes object is used to define the type of the posts prop.In this case, it is defined as an array 
-    // of objects that have certain properties(such as id, post_img, title, message, and created_at).If the posts prop does not conform to this type, a warning will be displayed in the console.
+    // The propTypes object is used to define the type of the posts prop.
+    // If the posts prop does not conform to this type, a warning will be displayed in the console.
     PostList.propTypes = {
         posts: PropTypes.arrayOf(
             PropTypes.shape({
@@ -58,7 +59,7 @@ function PostList({ posts, getPosts, deletePosts }) {
     };
 
 
-    //formating the date so it looks nicer.
+    //Formating the date so it looks nicer.
     function formatDate(dateString) {
         const date = new Date(dateString);
         const options = { month: 'short', day: 'numeric', year: 'numeric' };
@@ -66,7 +67,6 @@ function PostList({ posts, getPosts, deletePosts }) {
     }
 
     return (
-
         <div className='postHeaderWrapper'>
             <div className='postHeaderContent'>
                 <h1 className='postTopContent'>Welcome to our Au Pair blog! Here, you'll find posts about the Au Pair program,
@@ -78,17 +78,10 @@ function PostList({ posts, getPosts, deletePosts }) {
                 <h2 className='postCenterText'>
                     Already have an account?
                     <LogIn className='logInLink' />
-                    
-                    {/* <Link to='/login' className='loginBlogLink'>
-                        login
-                    </Link> */}
                 </h2>
 
                 <h2 className='postCenterText'>Don't have an account?
                     <SignUp className='signUpLink' />
-                    {/* <Link to='/register' className='loginBlogLink' >
-                        Register
-                    </Link> */}
                 </h2>
             </div>
 
@@ -101,7 +94,7 @@ function PostList({ posts, getPosts, deletePosts }) {
                     {posts.map((post) => (
                         <li key={post.id} className='postContentWrapper'>
 
-                            {/* Checking if the user uploaded an Img, if not add a default Img */}
+                            {/* Checking if the user uploaded an Img, if not display a default Img */}
                             {post.post_img ? (
                                 <img src={post.post_img} alt={post.title} className='postImg' />
                             ) : (
@@ -170,7 +163,7 @@ const mapStateToProps = (state) => ({
     posts: state.postsReducer.posts,
 });
 
-// the connect function is used to connect the Post component to the Redux store.The mapStateToProps function is
-//  passed as the first argument, and an object containing the getPosts action creator is passed as the second argument.
-//  The connect function returns a new component that has access to the Redux store, and the Post component is exported as the default export.
+// Connect is used to connect the Post component to the Redux store. Passing mapStateToProps as as the first argument,
+// and an object containing the getPosts, deletePosts action as a second argument.
+// The connect function returns a new component that has access to the Redux store
 export default connect(mapStateToProps, { getPosts, deletePosts })(PostList);

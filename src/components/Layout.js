@@ -3,7 +3,7 @@ import "./Layout.css"
 import LogIn from "./accounts/LogIn.js";
 import SignUp from "./accounts/SignUp";
 import LanguageIcon from '@mui/icons-material/Language';
-
+import logo from '../img/Example-logo.png'
 
 const Layout = () => {
     const { pathname } = useLocation();
@@ -11,12 +11,13 @@ const Layout = () => {
     return (
         <div className='layoutWrapper'>
             <div className='headerWrapper'>
+                <div className='headerLeft'>
+                    <Link className='logoLink' to='/'>
+                        <img className='logoImg' src={logo} />
+                    </Link>
+                </div>
+
                 <nav className='header'>
-
-                    <div className='headerLeft'>
-                        <Link className='logoLink' to='/'>Logo go back to home page</Link>
-                    </div>
-
                     <div className='headerCenter'>
                         <Link className='homeLink' to='/'>Blog</Link>
                         <Link className='aboutLink' to='/about'>About Us</Link>
