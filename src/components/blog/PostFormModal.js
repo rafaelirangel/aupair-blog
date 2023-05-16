@@ -39,16 +39,21 @@ const PostFormModal = ({ addPosts, onClose }) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        const post = { post_img, title, message };
-        addPosts(post);
+        const formData = new FormData();
+        formData.append('post_img', post_img);
+        formData.append('title', title);
+        formData.append('message', message);
+      
+        addPosts(formData); // Pass the formData directly to the addPosts function
+      
         setFormData({
-            post_img: null,
-            title: '',
-            message: '',
+          post_img: null,
+          title: '',
+          message: '',
         });
         setImageURL(''); // clear the image preview
         handleClose(); // close the modal
-    };
+      };
 
     return (
         <div className='modalWrapper'>
