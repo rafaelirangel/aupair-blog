@@ -2,14 +2,14 @@ import './Post.css'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { getPosts, deletePosts } from "../../actions/posts";
+import { getPosts, deletePosts, updateComment, addComment, deleteComment } from "../../actions/posts";
 import blogImg from '../../img/blogging.jpg'
 import PostForm from './PostForm';
 import LogIn from '../accounts/LogIn';
 import SignUp from '../accounts/SignUp';
+import { Link } from 'react-router-dom';
 
-
-function PostList({ posts, getPosts, deletePosts }) {
+function PostList({ posts, getPosts, deletePosts, updateComment, addComment, deleteComment }) {
 
     // Fetching the posts from the server when the component is mounted.
     // The getPosts function is passed as a dependency of the useEffect hook, so it will be called every time getPosts changes.This ensures that the posts are always up - to - date.
@@ -24,11 +24,11 @@ function PostList({ posts, getPosts, deletePosts }) {
 
     // Update like count when button is clicked
     const handleLikeBtn = () => {
-        if (likeCount === 0) {
-            setLikeCount(1);
-        } else {
-            setLikeCount(0);
-        }
+        // if (likeCount === 0) {
+        //     setLikeCount(1);
+        // } else {
+        //     setLikeCount(0);
+        // }
     }
 
     // Comment 
@@ -36,10 +36,17 @@ function PostList({ posts, getPosts, deletePosts }) {
         e.preventDefault();
         const commentInput = e.target.elements.commentInput;
         const newComment = commentInput.value.trim();
-        if (newComment !== "") {
+        if (newComment !== '') {
             setComments([...comments, newComment]);
-            commentInput.value = "";
+            addComment(newComment); // Dispatch addComment action
+            commentInput.value = '';
         }
+    };
+
+    const handleDeleteComment = (commentIndex) => {
+        const updatedComments = comments.filter((_, index) => index !== commentIndex);
+        setComments(updatedComments);
+        deleteComment(commentIndex); // Dispatch deleteComment action
     };
 
     // The propTypes object is used to define the type of the posts prop.
@@ -56,8 +63,12 @@ function PostList({ posts, getPosts, deletePosts }) {
         ).isRequired,
         getPosts: PropTypes.func.isRequired,
         deletePosts: PropTypes.func.isRequired,
+        updateComment: PropTypes.func.isRequired,
+        addComment: PropTypes.func.isRequired,
+        deleteComment: PropTypes.func.isRequired,
     };
 
+    
 
     //Formating the date so it looks nicer.
     function formatDate(dateString) {
@@ -120,9 +131,15 @@ function PostList({ posts, getPosts, deletePosts }) {
 
                                     {/* Display comments */}
                                     <div className='postComments'>
-                                        {comments.map((comment, index) => (
-                                            <p key={index} className='commentText'>{comment}</p>
-                                        ))}
+                                        {/* {comments.map((comment, index) => (
+                                            <div key = { index } className = 'commentContainer'> 
+                                                <p className='commentText'>{comment}</p>
+                                                <button onClick={() => handleDeleteComment(index)} className='deleteCommentBtn'>
+                                                    Delete
+                                                </button>
+                                            </div>
+                                           
+                                        ))} */}
                                     </div>
                                 </div>
 
@@ -133,14 +150,14 @@ function PostList({ posts, getPosts, deletePosts }) {
                                         <button onClick={handleLikeBtn} className='likeBtn'>
                                             <span className='likeCount'>{likeCount}</span>&#10084;
                                         </button>
-
-                                        {/* Add comments button */}
+                                        <Link to={`/comments/${post.id}`}>Comments</Link>        
+                                        {/* Add comments button
                                         <form onSubmit={handleCommentSubmit}>
                                             <input type="text" name="commentInput" placeholder="Add a comment" />
                                             <button type="submit" className='commentBtn'>
                                                 Add Comment
                                             </button>
-                                        </form>
+                                        </form> */}
                                     </div>
 
                                     <div className='postFooterRight'>
@@ -166,4 +183,4 @@ const mapStateToProps = (state) => ({
 // Connect is used to connect the Post component to the Redux store. Passing mapStateToProps as as the first argument,
 // and an object containing the getPosts, deletePosts action as a second argument.
 // The connect function returns a new component that has access to the Redux store
-export default connect(mapStateToProps, { getPosts, deletePosts })(PostList);
+export default connect(mapStateToProps, { getPosts, deletePosts, updateComment, addComment, deleteComment })(PostList);

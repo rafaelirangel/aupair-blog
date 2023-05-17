@@ -1,8 +1,18 @@
-import {GET_POSTS, DELETE_POSTS, ADD_POSTS} from '../actions/types.js';
+import {
+    GET_POSTS,
+    ADD_POSTS,
+    UPDATE_POSTS,
+    DELETE_POSTS, 
+    GET_COMMENTS,
+    ADD_COMMENT,
+    UPDATE_COMMENT,
+    DELETE_COMMENT,
+    GET_LIKE,
+    ADD_LIKE,
+    } from '../actions/types.js';
 
 
 // This is a reducer function for handling the posts state in a Redux store.The reducer is responsible for updating the state based on the actions dispatched to the store.
-
 // The reducer initializes the posts state as an empty array in the initialState object.
 // The reducer exports a default function that accepts two arguments: state and action.
 // The state argument is initialized with the initialState object as its default value.This means that if no state is provided, the reducer will use the initialState.
@@ -37,6 +47,38 @@ export default function (state = initialState, action) {
                 ...state,
                 posts: [...state.posts, action.payload]
             };   
+
+        case UPDATE_POSTS:
+            return{
+                ...state,
+                posts: state.props.map((post) => 
+                post.id == action.payload.id ? action.payload : post )
+            };    
+
+        case GET_COMMENTS:
+            return{
+                ...state,
+                comments: action.payload
+            };
+
+        case ADD_COMMENT:
+            return{
+                ...state,
+                comments: [...state, action.payload]
+            }    
+
+        case UPDATE_COMMENT:
+            return{
+                ...state,
+                comments: state.props.map((comment) =>
+                comment.id == action.payload.id ? action.payload : comment)
+            };
+
+        case DELETE_COMMENT:
+            return{
+                ...state,
+                comments: state.comments.filter((comment) => comment.id !== action.payload),
+            };
 
         default:
             return state;
