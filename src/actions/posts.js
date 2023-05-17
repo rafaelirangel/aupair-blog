@@ -1,6 +1,3 @@
-//this is where we are making the fetch request
-// This code exports a function named getPosts that makes an asynchronous HTTP request to 
-// retrieve a list of posts from an API, using the Axios library.The function takes no parameters but returns another function that takes in a dispatch function as a parameter.
 
 // The returned function is a Redux action creator that wraps the Axios GET request with a 
 // dispatch function, which dispatches an action to the Redux store when the request is successful.
@@ -16,8 +13,20 @@
 // store to retrieve a list of posts from an API and update the store's state with the returned data.
 
 import axios from "axios";
-import { GET_POSTS, DELETE_POSTS, ADD_POSTS } from "./types";
+import {
+    GET_POSTS,
+    ADD_POSTS,
+    UPDATE_POSTS,
+    DELETE_POSTS,
+    GET_COMMENTS,
+    ADD_COMMENT,
+    UPDATE_COMMENT,
+    DELETE_COMMENT,
+    GET_LIKE,
+    ADD_LIKE, } from "./types";
 
+
+//Fetching data from the backend
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
 });
@@ -25,7 +34,7 @@ const client = axios.create({
 //GET POSTS
 export const getPosts = () =>  dispatch => {
     client
-    .get('/post/')
+    .get('/posts/')
     .then(res => {
         console.log(res.data)
         dispatch({
@@ -36,26 +45,11 @@ export const getPosts = () =>  dispatch => {
     .catch(err => console.log(err));
 }
 
-//DELETE POSTS
-export const deletePosts = (id) => dispatch => {
-    client
-        .delete(`/post/${id}`)
-        .then(res => {
-            console.log(res.data)
-            dispatch({
-                type: DELETE_POSTS,
-                payload: id
-            });
-        })
-        .catch(err => console.log(err));
-        
-}
-
-//ADD POSTS CREATE
+// /ADD POSTS CREATE
 export const addPosts = (post) => dispatch => {
     console.log(post)
     client
-        .post('/post/', post)
+        .post('/posts/', post)
         .then(res => {
             console.log(res.data)
             dispatch({
@@ -66,20 +60,91 @@ export const addPosts = (post) => dispatch => {
         .catch(err => console.log(err));
 }
 
+//DELETE POSTS
+export const deletePosts = (postId) => dispatch => {
+    client
+        .delete(`/posts/${postId}`)
+        .then(res => {
+            console.log(res.data)
+            dispatch({
+                type: DELETE_POSTS,
+                payload: postId
+            });
+        })
+        .catch(err => console.log(err));
+        
+}
+
+//UPDATE POST
+export const updatePost = (id, updatedPost) => dispatch => {
+    client
+        .put(`/post/${id}/`, updatedPost)
+        .then(res => {
+            console.log(res.data)
+            dispatch({
+                type: UPDATE_POSTS,
+                payload: res.data
+            });
+        })
+        .catch(err => console.log(err));
+}
+
+//GET COMMENTS
+export const getComments = (postId) => async (dispatch) => {
+    try {
+        const res = await client.get(`/posts/${postId}/comments/`);
+        dispatch({
+            type: GET_COMMENTS,
+            payload: res.data
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const addComment = (postId, comment) => async (dispatch) => {
+    try {
+        const res = await client.post(`/posts/${postId}/comments/`, comment);
+        dispatch({
+            type: ADD_COMMENT,
+            payload: res.data
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const updateComment = (postId, commentId, updatedComment) => async (
+    dispatch
+) => {
+    try {
+        const res = await client.put(
+            `/posts/${postId}/comments/${commentId}/`,
+            updatedComment
+        );
+        dispatch({
+            type: UPDATE_COMMENT,
+            payload: res.data
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteComment = (postId, commentId) => async (dispatch) => {
+    try {
+        await client.delete(`/posts/${postId}/comments/${commentId}/`);
+        dispatch({
+            type: DELETE_COMMENT,
+            payload: commentId
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 
-// //UPDATE POST
-// export const updatePost = (id, updatedPost) => dispatch => {
-//     client
-//         .put(`/post/${id}/`, updatedPost)
-//         .then(res => {
-//             console.log(res.data)
-//             dispatch({
-//                 type: UPDATE_POST,
-//                 payload: res.data
-//             });
-//         })
-//         .catch(err => console.log(err));
-// }
+
+
 
 

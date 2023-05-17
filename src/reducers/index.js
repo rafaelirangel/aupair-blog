@@ -9,9 +9,9 @@
 //passing all the reducers file into this index.js
 import { combineReducers } from "redux";
 import postsReducer from './posts';
-import authReducer from './auth';
+// import authReducer from './auth';
 
 export default combineReducers({
     postsReducer,
-    authReducer,
+    // authReducer,
 })

@@ -1,9 +1,20 @@
 
-
+//ACTIONS FOR POSTS
 export const GET_POSTS = 'GET_POSTS'
-export const DELETE_POSTS = 'DELETE_POSTS'
 export const ADD_POSTS = 'ADD_POSTS'
-export const USER_LOADING = 'USER_LOADING'
-export const USER_LOADED = 'USER_LOADED'
-export const AUTH_ERROR = 'AUTH_ERROR'
+export const UPDATE_POSTS = 'UPDATE_POSTS'
+export const DELETE_POSTS = 'DELETE_POSTS'
+
+//ACTIONS FOR COMMENTS
+export const GET_COMMENTS = 'GET_COMMENTS'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+
+//ACTIONS FOR LIKES
+export const GET_LIKE = 'GET_LIKE'
+export const ADD_LIKE = 'ADD_LIKE'
+// export const USER_LOADING = 'USER_LOADING'
+// export const USER_LOADED = 'USER_LOADED'
+// export const AUTH_ERROR = 'AUTH_ERROR'
 
