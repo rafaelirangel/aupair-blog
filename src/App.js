@@ -25,7 +25,8 @@ function App() {
             <Route path='/blog' element={<Blog />} />
             <Route path='/register' element={<SignUp />} />
             <Route path='/login' element={<LogIn />} />
-            <Route path="/comments/:postId" component={Comment} />
+            {/* <Route path="/comments/:postId" element={Comment} /> */}
+            <Route path='/comments' element={<Comment />} />
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>

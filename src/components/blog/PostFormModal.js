@@ -43,9 +43,7 @@ const PostFormModal = ({ addPosts, onClose }) => {
         formData.append('post_img', post_img);
         formData.append('title', title);
         formData.append('message', message);
-      
-        addPosts(formData); // Pass the formData directly to the addPosts function
-      
+        addPosts(formData); // Pass the formData directly to the addPosts function  
         setFormData({
           post_img: null,
           title: '',
@@ -85,20 +83,24 @@ const PostFormModal = ({ addPosts, onClose }) => {
                             value={message}
                         />
                     </label>
-                    <label className='postImg'>Upload an Image:</label>
+                    <span className='imgContent'>Upload an Image:</span>
+                    <label className='fileInputLabel'>
                     <input
                         className="imgPost"
                         type="file"
                         accept="image/*"
                         name="post_img"
                         onChange={handleImageChange}
+                        style={{ display: 'none' }}
                     />
+                    Choose file
+                   </label>
                     {imageURL && (
                         <img
                             src={imageURL}
                             alt="Preview"
-                            className=""
-                            style={{ maxHeight: '100px' }}
+                            className="imgFormPost"
+                            style={{ maxHeight: '200px' }}
                         />
                     )}
                     <button type="submit" className="postFormBtn" >

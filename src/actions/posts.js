@@ -31,7 +31,7 @@ const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
 });
 
-//GET POSTS
+// GET POSTS
 export const getPosts = () =>  dispatch => {
     client
     .get('/posts/')
@@ -44,6 +44,31 @@ export const getPosts = () =>  dispatch => {
     })
     .catch(err => console.log(err));
 }
+
+// export const getPosts = () => async (dispatch) => {
+//     try {
+//         const response = await axios.get("/posts/"); // Adjust the API endpoint URL as needed
+//         const posts = response.data;
+
+//         // Extract comments from posts and store them separately
+//         const comments = posts.reduce((acc, post) => {
+//             if (post.comments) {
+//                 acc[post.id] = post.comments;
+//             }
+//             return acc;
+//         }, {});
+
+//         dispatch({
+//             type: GET_POSTS,
+//             payload: {
+//                 posts,
+//                 comments,
+//             },
+//         });
+//     } catch (error) {
+//         console.error(error);
+//     }
+// };
 
 // /ADD POSTS CREATE
 export const addPosts = (post) => dispatch => {
@@ -76,9 +101,9 @@ export const deletePosts = (postId) => dispatch => {
 }
 
 //UPDATE POST
-export const updatePost = (id, updatedPost) => dispatch => {
+export const updatePost = (postId, updatedPost) => dispatch => {
     client
-        .put(`/post/${id}/`, updatedPost)
+        .put(`/post/${postId}/`, updatedPost)
         .then(res => {
             console.log(res.data)
             dispatch({
@@ -90,17 +115,33 @@ export const updatePost = (id, updatedPost) => dispatch => {
 }
 
 //GET COMMENTS
-export const getComments = (postId) => async (dispatch) => {
-    try {
-        const res = await client.get(`/posts/${postId}/comments/`);
-        dispatch({
-            type: GET_COMMENTS,
-            payload: res.data
-        });
-    } catch (error) {
-        console.log(error);
-    }
-};
+// export const getComments = (postId) => async (dispatch) => {
+//     try {
+//         const res = await client.get(`/posts/${postId}/comments/`);
+//         console.log(res.data)
+//         dispatch({
+//             type: GET_COMMENTS,
+//             payload: res.data
+//         });
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
+
+export const getComments = postId => dispatch => {
+    client
+        .get(`/posts/${postId}/comments/`)
+        .then(res => {
+            // console.log(res.data)
+            dispatch({
+                type: GET_COMMENTS,
+                payload: res.data
+            });
+            console.log(res.data)
+        })
+        .catch(err => console.log(err));
+  
+}
 
 export const addComment = (postId, comment) => async (dispatch) => {
     try {

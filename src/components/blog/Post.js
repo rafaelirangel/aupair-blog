@@ -2,14 +2,16 @@ import './Post.css'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { getPosts, deletePosts, updateComment, addComment, deleteComment } from "../../actions/posts";
+import { getPosts, deletePosts, updatePost, updateComment, addComment, deleteComment, getComments } from "../../actions/posts";
 import blogImg from '../../img/blogging.jpg'
 import PostForm from './PostForm';
 import LogIn from '../accounts/LogIn';
 import SignUp from '../accounts/SignUp';
 import { Link } from 'react-router-dom';
+import UpdatePost from './UpdatePost';
 
-function PostList({ posts, getPosts, deletePosts, updateComment, addComment, deleteComment }) {
+
+function PostList({ posts, getPosts, getComments ,updatePost, deletePosts, updateComment, addComment, deleteComment, postId }) {
 
     // Fetching the posts from the server when the component is mounted.
     // The getPosts function is passed as a dependency of the useEffect hook, so it will be called every time getPosts changes.This ensures that the posts are always up - to - date.
@@ -17,37 +19,19 @@ function PostList({ posts, getPosts, deletePosts, updateComment, addComment, del
         getPosts();
     }, [getPosts]);
 
-
-    // Adding states
-    const [likeCount, setLikeCount] = useState(0);
-    const [comments, setComments] = useState([]);
-
-    // Update like count when button is clicked
-    const handleLikeBtn = () => {
-        // if (likeCount === 0) {
-        //     setLikeCount(1);
-        // } else {
-        //     setLikeCount(0);
-        // }
-    }
-
-    // Comment 
-    const handleCommentSubmit = (e) => {
-        e.preventDefault();
-        const commentInput = e.target.elements.commentInput;
-        const newComment = commentInput.value.trim();
-        if (newComment !== '') {
-            setComments([...comments, newComment]);
-            addComment(newComment); // Dispatch addComment action
-            commentInput.value = '';
-        }
+    // Add state for dropdown menu
+    const [showDropdown, setShowDropdown] = useState(false);
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
     };
 
-    const handleDeleteComment = (commentIndex) => {
-        const updatedComments = comments.filter((_, index) => index !== commentIndex);
-        setComments(updatedComments);
-        deleteComment(commentIndex); // Dispatch deleteComment action
-    };
+    useEffect(() => {
+        // Fetch comments for each post
+        posts.forEach(post => {
+            getComments(post.id, post);
+        });
+    }, [getComments, posts]);
+
 
     // The propTypes object is used to define the type of the posts prop.
     // If the posts prop does not conform to this type, a warning will be displayed in the console.
@@ -66,9 +50,10 @@ function PostList({ posts, getPosts, deletePosts, updateComment, addComment, del
         updateComment: PropTypes.func.isRequired,
         addComment: PropTypes.func.isRequired,
         deleteComment: PropTypes.func.isRequired,
+        updatePost: PropTypes.func.isRequired,
     };
 
-    
+
 
     //Formating the date so it looks nicer.
     function formatDate(dateString) {
@@ -99,7 +84,7 @@ function PostList({ posts, getPosts, deletePosts, updateComment, addComment, del
             <div className='postBottomContent'>
                 <PostForm />
             </div>
-            
+
             <div className='postWrapper'>
                 <ul>
                     {posts.map((post) => (
@@ -113,61 +98,73 @@ function PostList({ posts, getPosts, deletePosts, updateComment, addComment, del
                             )}
 
                             <div className='postContent'>
-                                <div className='userInfo'>
-                                    <div className='profileImg'>
+                                <div className='headerFlex'>
 
-                                        {/* This  is hardcoded till we fix the profile component*/}
-                                        <img className='userImg' src={blogImg} alt="User profile" />
+                                    <div className='userInfo'>
+                                        <div className='profileImg'>
+                                            {/* This  is hardcoded till we fix the profile component*/}
+                                            <img className='userImg' src={blogImg} alt="User profile" />
+                                        </div>
+
+                                        <div className='postHeader'>
+                                            <h2 className='userProfileName'>User name goes here</h2>
+                                            <p className='postDate'>{formatDate(post.created_at)}</p>
+                                        </div>
+                                    </div>
+                            
+                                    <div className='toggleMenu'>
+                                        {/* Button to toggle dropdown */}
+                                        <button onClick={toggleDropdown} className="dropdownBtn">
+                                            &#8942;
+                                        </button>
                                     </div>
 
-                                    <div className='postHeader'>
-                                        <h2 className='userProfileName'>User name goes here</h2>
-                                        <p className='postDate'>{formatDate(post.created_at)}</p>
-                                    </div>
                                 </div>
+
                                 <div className='postInfo'>
                                     <h2 className='postTitle'>{post.title}</h2>
                                     <p className='postDescription'>{post.message}</p>
-
-                                    {/* Display comments */}
-                                    <div className='postComments'>
-                                        {/* {comments.map((comment, index) => (
-                                            <div key = { index } className = 'commentContainer'> 
-                                                <p className='commentText'>{comment}</p>
-                                                <button onClick={() => handleDeleteComment(index)} className='deleteCommentBtn'>
-                                                    Delete
-                                                </button>
-                                            </div>
-                                           
-                                        ))} */}
-                                    </div>
+                                    <p>{post.likes_count}</p>
+                                    <p></p>
                                 </div>
 
                                 <div className='postFooter'>
                                     <div className='postFooterLeft'>
-
                                         {/* Display like count */}
-                                        <button onClick={handleLikeBtn} className='likeBtn'>
-                                            <span className='likeCount'>{likeCount}</span>&#10084;
+                                        <button className='likeBtn'>
+                                            <span className='likeCount'></span>&#10084;
                                         </button>
-                                        <Link to={`/comments/${post.id}`}>Comments</Link>        
-                                        {/* Add comments button
-                                        <form onSubmit={handleCommentSubmit}>
-                                            <input type="text" name="commentInput" placeholder="Add a comment" />
-                                            <button type="submit" className='commentBtn'>
-                                                Add Comment
-                                            </button>
-                                        </form> */}
                                     </div>
 
+                                    <div class='postFooterCenter'> 
+                                        <Link to='/comments' className='commentLink'>Comments...</Link>
+                                    </div>
+                                   
                                     <div className='postFooterRight'>
-                                        <button onClick={() => deletePosts(post.id)} className='deleteBtn'>Delete</button>
+                                        <div className="dropdown">
+                                            {/* Add dropdown content */}
+                                            {showDropdown && (
+                                                <div className="dropdownContent">
+                                                    <button onClick={() => deletePosts(post.id)} className='deleteBtn'>Delete</button>
+                                                    {/* <button  className='updateBtn'>Uptade Post</button> */}
+
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     ))}
                 </ul>
+
+                {/* {updateFormOpen && (
+                    <UpdatePost
+                        postId={postId} // Pass the post ID to the update form component
+                        updatePost={updatePost}
+                        onClose={toggleUpdateForm}
+                    />
+                )} */}
             </div>
         </div>
     );
@@ -178,9 +175,10 @@ function PostList({ posts, getPosts, deletePosts, updateComment, addComment, del
 // the component has access to the latest posts fetched from the server.
 const mapStateToProps = (state) => ({
     posts: state.postsReducer.posts,
+    // updatePost: state.postsReducer.updatePost,
 });
 
 // Connect is used to connect the Post component to the Redux store. Passing mapStateToProps as as the first argument,
 // and an object containing the getPosts, deletePosts action as a second argument.
 // The connect function returns a new component that has access to the Redux store
-export default connect(mapStateToProps, { getPosts, deletePosts, updateComment, addComment, deleteComment })(PostList);
+export default connect(mapStateToProps, { getPosts, updatePost,  deletePosts, updateComment, addComment, deleteComment, getComments })(PostList);
