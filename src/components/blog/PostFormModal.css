@@ -52,7 +52,6 @@
     font-weight: 600;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: ;
     justify-content: center;
     border-color: lightseagreen;
     text-align: left;
@@ -67,8 +66,6 @@
     font-size: 17px;
     outline-color: lightseagreen;
     border-color: black;
-
-
 }
 
 .descriptionInput {

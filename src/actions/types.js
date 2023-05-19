@@ -14,6 +14,9 @@ export const DELETE_COMMENT = 'DELETE_COMMENT'
 //ACTIONS FOR LIKES
 export const GET_LIKE = 'GET_LIKE'
 export const ADD_LIKE = 'ADD_LIKE'
+
+
+//ACTION FOR AUTH
 // export const USER_LOADING = 'USER_LOADING'
 // export const USER_LOADED = 'USER_LOADED'
 // export const AUTH_ERROR = 'AUTH_ERROR'

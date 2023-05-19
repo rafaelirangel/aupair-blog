@@ -8,14 +8,17 @@ import { useState } from "react";
 
 
 const Layout = () => {
+
+    // determine the current URL path and perform conditional rendering or other logic based on the path.
     const { pathname } = useLocation();
 
+    //handling responsive hamburger menu
     const [menuOpen, setMenuOpen] = useState(false);
-
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
 
+    //Close the responsive nav bar when a link is clicked
     const handleLinkClick = () => {
         setMenuOpen(false);
     };

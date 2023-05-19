@@ -45,31 +45,6 @@ export const getPosts = () =>  dispatch => {
     .catch(err => console.log(err));
 }
 
-// export const getPosts = () => async (dispatch) => {
-//     try {
-//         const response = await axios.get("/posts/"); // Adjust the API endpoint URL as needed
-//         const posts = response.data;
-
-//         // Extract comments from posts and store them separately
-//         const comments = posts.reduce((acc, post) => {
-//             if (post.comments) {
-//                 acc[post.id] = post.comments;
-//             }
-//             return acc;
-//         }, {});
-
-//         dispatch({
-//             type: GET_POSTS,
-//             payload: {
-//                 posts,
-//                 comments,
-//             },
-//         });
-//     } catch (error) {
-//         console.error(error);
-//     }
-// };
-
 // /ADD POSTS CREATE
 export const addPosts = (post) => dispatch => {
     console.log(post)
@@ -114,19 +89,6 @@ export const updatePost = (postId, updatedPost) => dispatch => {
         .catch(err => console.log(err));
 }
 
-//GET COMMENTS
-// export const getComments = (postId) => async (dispatch) => {
-//     try {
-//         const res = await client.get(`/posts/${postId}/comments/`);
-//         console.log(res.data)
-//         dispatch({
-//             type: GET_COMMENTS,
-//             payload: res.data
-//         });
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
 
 export const getComments = postId => dispatch => {
     client

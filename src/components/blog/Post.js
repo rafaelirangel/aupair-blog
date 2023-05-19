@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 
 
-function PostList({ posts, getPosts, getComments , deletePosts}) {
+function PostList({ posts, getPosts, getComments, deletePosts }) {
 
     // Fetching the posts from the server when the component is mounted.
     // The getPosts function is passed as a dependency of the useEffect hook, so it will be called every time getPosts changes.
@@ -20,7 +20,7 @@ function PostList({ posts, getPosts, getComments , deletePosts}) {
         getPosts();
     }, [getPosts]);
 
-    
+
     // Fetching comments for each post.
     useEffect(() => {
         posts.forEach(post => {
@@ -123,7 +123,7 @@ function PostList({ posts, getPosts, getComments , deletePosts}) {
                                             <p className='postDate'>{formatDate(post.created_at)}</p>
                                         </div>
                                     </div>
-                            
+
                                     <div className='toggleMenu'>
                                         {/* Button to toggle dropdown */}
                                         <button onClick={toggleDropdown} className="dropdownBtn">
@@ -136,7 +136,7 @@ function PostList({ posts, getPosts, getComments , deletePosts}) {
                                     {/* Post Information */}
                                     <h2 className='postTitle'>{post.title}</h2>
                                     <p className='postDescription'>{post.message}</p>
-                                    
+
                                     <p></p>
                                 </div>
 
@@ -150,7 +150,7 @@ function PostList({ posts, getPosts, getComments , deletePosts}) {
                                     </div>
 
                                     {/* Link for the comments of the post */}
-                                    <div class='postFooterCenter'> 
+                                    <div class='postFooterCenter'>
                                         <Link to={`/comments/${post.id}`} className='commentLink'>View Comments...</Link>
                                     </div>
 
@@ -160,7 +160,7 @@ function PostList({ posts, getPosts, getComments , deletePosts}) {
                                             <p>{comment.comment}</p>
                                         </div>
                                     ))} */}
-                                   
+
 
                                     <div className='postFooterRight'>
                                         <div className="dropdown">
@@ -195,4 +195,4 @@ const mapStateToProps = (state) => ({
 // Connect is connecting the Post component to the Redux store. Passing mapStateToProps as as the first argument,
 // and an object containing the actions as a second argument.
 // The connect function returns a new component that has access to the Redux store
-export default connect(mapStateToProps, { getPosts, updatePost,  deletePosts, updateComment, addComment, deleteComment, getComments })(PostList);
+export default connect(mapStateToProps, { getPosts, updatePost, deletePosts, updateComment, addComment, deleteComment, getComments })(PostList);

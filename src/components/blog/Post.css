@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Courgette&family=Crimson+Text:wght@400;700&family=Inconsolata:wght@300;400&family=Lobster&family=Mate+SC&family=Montserrat:wght@200;400&family=PT+Sans+Narrow&family=Pacifico&family=Poppins&family=Quicksand:wght@400;500&family=Raleway&family=Signika+Negative:wght@500&family=Source+Sans+Pro:wght@300&family=Spirax&display=swap');
 
-*{
-    /* max-width: 1250px; */
-}
-
 ul,
 li {
     padding: 0;
@@ -13,12 +9,13 @@ li {
 .postContentWrapper {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid #0dc6c3;
+    border: 2px solid #0dc6c3;
     height: fit-content;
-    /* max-width: 1770px; Adjust the value as needed */
     margin-bottom: 30px;
     margin-left: 40px;
     margin-right: 40px;
+    background-color:rgba(231, 248, 248, 0.3);
+    border-radius: 10px;
 }
 
 .postWrapper {
@@ -31,6 +28,8 @@ li {
 .postContent {
     margin: 20px 20px;
     flex: 1;
+    
+    background: cover;
 }
 
 .postTitle {
@@ -48,6 +47,8 @@ li {
     width: 50%;
     height: 300px;
     flex-shrink: 0;
+    border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
 }
 
 .postDescription {
@@ -202,16 +203,12 @@ li {
 .dropdownBtn {
     font-weight: 300;
     font-size: 29px;
-    margin-left: 20px;
+    margin-left: 13vw
 }
 
 .headerFlex {
     display: flex;
     align-items: center;
-}
-
-.dropdownBtn {
-    margin-left: 10vw
 }
 
   .toggleMenu {

@@ -12,7 +12,7 @@ import {
     } from '../actions/types.js';
 
 
-// This is a reducer function for handling the posts state in a Redux store.The reducer is responsible for updating the state based on the actions dispatched to the store.
+// The reducer is responsible for updating the state based on the actions dispatched to the store.
 // The reducer initializes the posts state as an empty array in the initialState object.
 // The reducer exports a default function that accepts two arguments: state and action.
 // The state argument is initialized with the initialState object as its default value.This means that if no state is provided, the reducer will use the initialState.
@@ -35,7 +35,7 @@ export default function (state = initialState, action) {
                 posts: action.payload
             };
 
-    //its returning the current state and filtering through and return the ones that is not the id we deleted
+    //its returning the current state and filtering through it and returning the ones that is not the id we deleted
         case DELETE_POSTS:
             return {
                 ...state,

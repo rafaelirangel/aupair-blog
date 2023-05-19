@@ -16,11 +16,6 @@
         border-radius: 15px;
     }
 
-    button{
-           background-color: transparent;
-        }
-
-@media(max-width: 768px) {
-
-
-}
+    button {
+        background-color: transparent;
+    }

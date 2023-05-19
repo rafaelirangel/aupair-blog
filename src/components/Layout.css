@@ -1,185 +1,181 @@
  @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Courgette&family=Crimson+Text:wght@400;700&family=Inconsolata:wght@300;400&family=Lobster&family=Mate+SC&family=Montserrat:wght@200;400&family=PT+Sans+Narrow&family=Pacifico&family=Poppins&family=Quicksand:wght@400;500&family=Raleway&family=Source+Sans+Pro:wght@300&family=Spirax&display=swap');
 
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+ * {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+ }
 
-li {
-    list-style: none;
-}
+ li {
+     list-style: none;
+ }
 
-.headerWrapper{
-    /* width: 85%; */
-    margin: auto;
-}
+ .headerWrapper {
+     width: 100%;
+     margin: auto;
+ }
 
-.homeLink,
-.aboutLink,
-.programLink,
-.contactLink {
-    text-decoration: none;
-    color: Black;
-    font-weight: 600;
-    font-size: 24px;
-    font-family: 'Mate SC', sans-serif;
-    /* transition: all 0.3s ease-in-out; */
-    transition: 0.3s ease-out;
-    overflow: hidden;
-}
+ .homeLink,
+ .aboutLink,
+ .programLink,
+ .contactLink {
+     text-decoration: none;
+     color: Black;
+     font-weight: 600;
+     font-size: 24px;
+     font-family: 'Mate SC', sans-serif;
+     transition: 0.3s ease-out;
+     overflow: hidden;
+     border-right: 2px solid black;
+     padding-right: 10px;
+ }
 
-.homeLink:hover,
-.aboutLink:hover,
-.programLink:hover,
-.contactLink:hover {
-    transform: scale(1.05);
-    color: white;
-}
+ .homeLink:hover,
+ .aboutLink:hover,
+ .programLink:hover,
+ .contactLink:hover {
+     transform: scale(1.05);
+     color: white;
+ }
 
-.navbar {
-    min-height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* overflow: hidden; */
+ .navbar {
+     min-height: 70px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
 
-}
+ .navMenuContainer {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
 
-.navMenuContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+ .logoImg {
+     max-width: 230px;
+     height: 170px;
+ }
 
-.logoImg {
-    max-width: 230px;
-    height: 170px;
-}
+ .navMenu {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     gap: 20px;
+     background-color: darkgoldenrod;
+     padding: 50px;
+     border-radius: 30px;
+ }
 
-.navMenu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-    background-color: darkgoldenrod;
-    padding: 50px;
-    border-radius: 30px;
-    
-}
+ .hamburgerMenu {
+     display: none;
+     cursor: pointer;
+ }
 
-.hamburgerMenu {
-    display: none;
-    cursor: pointer;
-    /* padding: 10px;
-    background-color: transparent;
-    border: none; */
-}
+ .bar {
+     display: block;
+     width: 25px;
+     height: 3px;
+     margin-bottom: 5px;
+     background-color: black;
+     transition: transform 0.3s ease-in-out;
+     background-color: black;
+ }
 
-.bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin-bottom: 5px;
-    background-color: black;
-    transition: transform 0.3s ease-in-out;
-    background-color: black;
-}
+ .footer {
+     display: flex;
+     border-top: 1px solid lightgray;
+     padding: 30px 20px;
+     background-color: white;
+     text-align: center;
+     justify-content: space-between;
+     background-color: #159895;
+     margin-top: auto;
+ }
 
-.footer {
-    display: flex;
-    border-top: 1px solid lightgray;
-    padding: 30px 20px;
-    background-color: white;
-    text-align: center;
-    justify-content: space-between;
-    background-color: #159895;
-    margin-top: auto;
-}
+ .footerLeft {
+     display: flex;
+     padding: 5px;
+     font-size: 14px;
+ }
 
-.footerLeft {
-    display: flex;
-    padding: 5px;
-    font-size: 14px;
-}
+ .footerRight {
+     display: flex;
+     align-items: center;
+     width: 15vw;
+     margin-right: 80px;
+ }
 
-.footerRight {
-    display: flex;
-    align-items: center;
-    width: 15vw;
-    margin-right: 80px;
-}
+ .footerRight p {
+     padding: 0 3px;
+     font-weight: bold;
+ }
 
-.footerRight p {
-    padding: 0 3px;
-    font-weight: bold;
-}
+ @media (max-width: 768px) {
 
-@media (max-width: 768px) {
+     .hamburgerMenu {
+         display: block;
 
-    .hamburgerMenu {
-        display: block;
-        
-    }
+     }
 
-    .hamburgerMenu.active .bar:nth-child(2) {
-        opacity: 0;
-    }
+     .hamburgerMenu.active .bar:nth-child(2) {
+         opacity: 0;
+     }
 
-    .hamburgerMenu.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
+     .hamburgerMenu.active .bar:nth-child(1) {
+         transform: translateY(8px) rotate(45deg);
+     }
 
-    .hamburgerMenu.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
+     .hamburgerMenu.active .bar:nth-child(3) {
+         transform: translateY(-8px) rotate(-45deg);
+     }
 
-    .navMenu{
-        position: fixed; 
-        left: -100%;
-        top: 70px;
-        gap: 0;
-        flex-direction: column;
-        background-color: darkgoldenrod;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        
-    }
+     .navMenu {
+         position: fixed;
+         left: -100%;
+         gap: 0;
+         flex-direction: column;
+         background-color: darkgoldenrod;
+         width: 100%;
+         text-align: center;
+         transition: 0.3s;
+         border-radius: 0;
+     }
 
-    
+     .navbar {
+         display: flex;
+         flex-direction: column;
+         gap: 20px;
+     }
 
-                 .navbar {
-                     display: flex;
-                     flex-direction: column;
-                     align-items: flex-end;
-                 }
-/*     
-          .navbar ul {
-              justify-content: flex-start;
-              align-items: flex-start;
-          } */
-    
-          /* .navbar li {
-              margin: 10px 0;
-          } */
+     .homeLink,
+     .aboutLink,
+     .programLink,
+     .contactLink {
+         line-height: 1.2;
+         border-right: none;
+         padding-right: 0;
+     }
 
+     .navMenu.active {
+         left: 0;
+     }
 
-.homeLink,
-.aboutLink,
-.programLink,
-.contactLink{
-    margin: 16px 0;
-}
+     .logoImg {
+         max-width: fit-content;
+         height: 170px;
+     }
 
-.navMenu.active{
-    left: 0;
-}
+ }
 
-.logoImg {
-    max-width: fit-content;
-    height: 170px;
-}
+ @media (min-width: 769px) and (max-width: 1052px) {
 
-}
+     .homeLink,
+     .aboutLink,
+     .programLink,
+     .contactLink {
+         font-size: 18px;
+         white-space: nowrap;
+     }
+
+ }
