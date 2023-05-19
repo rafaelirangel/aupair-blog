@@ -5,7 +5,7 @@ import { NotFound, About, AuPair, Contact, Blog } from './pages';
 import { useEffect } from 'react';
 import LogIn from './components/accounts/LogIn';
 import SignUp from './components/accounts/SignUp';
-import Comment from './components/blog/Comments';
+import Comments from './components/blog/Comments';
 // import { loadUser } from './actions/auth'
 
 function App() {
@@ -25,8 +25,7 @@ function App() {
             <Route path='/blog' element={<Blog />} />
             <Route path='/register' element={<SignUp />} />
             <Route path='/login' element={<LogIn />} />
-            {/* <Route path="/comments/:postId" element={Comment} /> */}
-            <Route path='/comments' element={<Comment />} />
+            <Route path='/comments/:postId' element={<Comments/>} />
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>

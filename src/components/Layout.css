@@ -43,6 +43,7 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* overflow: hidden; */
 
 }
 
@@ -117,10 +118,6 @@ li {
 
 @media (max-width: 768px) {
 
-    .navbar{
-        display: inline;
-    }
-
     .hamburgerMenu {
         display: block;
         
@@ -139,7 +136,7 @@ li {
     }
 
     .navMenu{
-        position: fixed;
+        position: fixed; 
         left: -100%;
         top: 70px;
         gap: 0;
@@ -150,6 +147,23 @@ li {
         transition: 0.3s;
         
     }
+
+    
+
+                 .navbar {
+                     display: flex;
+                     flex-direction: column;
+                     align-items: flex-end;
+                 }
+/*     
+          .navbar ul {
+              justify-content: flex-start;
+              align-items: flex-start;
+          } */
+    
+          /* .navbar li {
+              margin: 10px 0;
+          } */
 
 
 .homeLink,

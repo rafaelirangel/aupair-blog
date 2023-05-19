@@ -8,30 +8,32 @@ import PostForm from './PostForm';
 import LogIn from '../accounts/LogIn';
 import SignUp from '../accounts/SignUp';
 import { Link } from 'react-router-dom';
-import UpdatePost from './UpdatePost';
 
 
-function PostList({ posts, getPosts, getComments ,updatePost, deletePosts, updateComment, addComment, deleteComment, postId }) {
+
+function PostList({ posts, getPosts, getComments , deletePosts}) {
 
     // Fetching the posts from the server when the component is mounted.
-    // The getPosts function is passed as a dependency of the useEffect hook, so it will be called every time getPosts changes.This ensures that the posts are always up - to - date.
+    // The getPosts function is passed as a dependency of the useEffect hook, so it will be called every time getPosts changes.
+    // This ensures that the posts are always up to date.
     useEffect(() => {
         getPosts();
     }, [getPosts]);
 
-    // Add state for dropdown menu
-    const [showDropdown, setShowDropdown] = useState(false);
-    const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
-    };
-
+    
+    // Fetching comments for each post.
     useEffect(() => {
-        // Fetch comments for each post
         posts.forEach(post => {
             getComments(post.id, post);
         });
     }, [getComments, posts]);
 
+
+    // State for dropdown menu
+    const [showDropdown, setShowDropdown] = useState(false);
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
 
     // The propTypes object is used to define the type of the posts prop.
     // If the posts prop does not conform to this type, a warning will be displayed in the console.
@@ -43,6 +45,12 @@ function PostList({ posts, getPosts, getComments ,updatePost, deletePosts, updat
                 title: PropTypes.string.isRequired,
                 message: PropTypes.string.isRequired,
                 created_at: PropTypes.string.isRequired,
+                comments: PropTypes.arrayOf(
+                    PropTypes.shape({
+                        id: PropTypes.number.isRequired,
+                        comment: PropTypes.string.isRequired,
+                    })
+                ),
             })
         ).isRequired,
         getPosts: PropTypes.func.isRequired,
@@ -51,8 +59,8 @@ function PostList({ posts, getPosts, getComments ,updatePost, deletePosts, updat
         addComment: PropTypes.func.isRequired,
         deleteComment: PropTypes.func.isRequired,
         updatePost: PropTypes.func.isRequired,
+        getComments: PropTypes.func.isRequired,
     };
-
 
 
     //Formating the date so it looks nicer.
@@ -71,22 +79,26 @@ function PostList({ posts, getPosts, getComments ,updatePost, deletePosts, updat
             </div>
 
             <div className='postCenterContent'>
+                {/* Login */}
                 <h2 className='postCenterText'>
                     Already have an account?
                     <LogIn className='logInLink' />
                 </h2>
 
+                {/* SignUp */}
                 <h2 className='postCenterText'>Don't have an account?
                     <SignUp className='signUpLink' />
                 </h2>
             </div>
 
+            {/* New Post Form */}
             <div className='postBottomContent'>
                 <PostForm />
             </div>
 
             <div className='postWrapper'>
                 <ul>
+                    {/* Getting all the posts */}
                     {posts.map((post) => (
                         <li key={post.id} className='postContentWrapper'>
 
@@ -118,13 +130,13 @@ function PostList({ posts, getPosts, getComments ,updatePost, deletePosts, updat
                                             &#8942;
                                         </button>
                                     </div>
-
                                 </div>
 
                                 <div className='postInfo'>
+                                    {/* Post Information */}
                                     <h2 className='postTitle'>{post.title}</h2>
                                     <p className='postDescription'>{post.message}</p>
-                                    <p>{post.likes_count}</p>
+                                    
                                     <p></p>
                                 </div>
 
@@ -132,22 +144,31 @@ function PostList({ posts, getPosts, getComments ,updatePost, deletePosts, updat
                                     <div className='postFooterLeft'>
                                         {/* Display like count */}
                                         <button className='likeBtn'>
+                                            <p>{post.likes_count}</p>
                                             <span className='likeCount'></span>&#10084;
                                         </button>
                                     </div>
 
+                                    {/* Link for the comments of the post */}
                                     <div class='postFooterCenter'> 
-                                        <Link to='/comments' className='commentLink'>Comments...</Link>
+                                        <Link to={`/comments/${post.id}`} className='commentLink'>View Comments...</Link>
                                     </div>
+
+                                    {/* Render comments for this post */}
+                                    {/* {post.comments && post.comments.map(comment => (
+                                        <div key={comment.id} className='commentWrapper'>
+                                            <p>{comment.comment}</p>
+                                        </div>
+                                    ))} */}
                                    
+
                                     <div className='postFooterRight'>
                                         <div className="dropdown">
-                                            {/* Add dropdown content */}
+                                            {/* Content that is suppose to show when the dropdown menu is toggled */}
                                             {showDropdown && (
                                                 <div className="dropdownContent">
                                                     <button onClick={() => deletePosts(post.id)} className='deleteBtn'>Delete</button>
                                                     {/* <button  className='updateBtn'>Uptade Post</button> */}
-
                                                 </div>
                                             )}
                                         </div>
@@ -158,13 +179,6 @@ function PostList({ posts, getPosts, getComments ,updatePost, deletePosts, updat
                     ))}
                 </ul>
 
-                {/* {updateFormOpen && (
-                    <UpdatePost
-                        postId={postId} // Pass the post ID to the update form component
-                        updatePost={updatePost}
-                        onClose={toggleUpdateForm}
-                    />
-                )} */}
             </div>
         </div>
     );
@@ -178,7 +192,7 @@ const mapStateToProps = (state) => ({
     // updatePost: state.postsReducer.updatePost,
 });
 
-// Connect is used to connect the Post component to the Redux store. Passing mapStateToProps as as the first argument,
-// and an object containing the getPosts, deletePosts action as a second argument.
+// Connect is connecting the Post component to the Redux store. Passing mapStateToProps as as the first argument,
+// and an object containing the actions as a second argument.
 // The connect function returns a new component that has access to the Redux store
 export default connect(mapStateToProps, { getPosts, updatePost,  deletePosts, updateComment, addComment, deleteComment, getComments })(PostList);

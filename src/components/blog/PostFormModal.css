@@ -52,6 +52,7 @@
     font-weight: 600;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: ;
     justify-content: center;
     border-color: lightseagreen;
     text-align: left;
@@ -71,16 +72,12 @@
 }
 
 .descriptionInput {
-    padding: 150px 70px;
+    padding: 30px;
     border-radius: 5px;
     text-decoration: none;
     font-size: 17px;
     outline-color: lightseagreen;
     border-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
 }
 
 .fileInputLabel {
