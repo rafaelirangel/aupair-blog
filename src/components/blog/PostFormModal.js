@@ -40,24 +40,22 @@ const PostFormModal = ({ addPosts, onClose }) => {
     const onSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        
+
         if (post_img) {
-          formData.append('post_img', post_img);
+            formData.append('post_img', post_img);
         }
-        
         formData.append('title', title);
         formData.append('message', message);
-        
         addPosts(formData); // Pass the formData directly to the addPosts function
-        
+
         setFormData({
-          post_img: null,
-          title: '',
-          message: '',
+            post_img: null,
+            title: '',
+            message: '',
         });
         setImageURL(''); // clear the image preview
         handleClose(); // close the modal
-      };
+    };
 
     return (
         <div className='modalWrapper'>
@@ -80,29 +78,33 @@ const PostFormModal = ({ addPosts, onClose }) => {
                     </label>
 
                     <label className='postDescription'>
-                        <input
+                        <textarea
                             className='descriptionInput'
-                            type="text"
                             name="message"
-                            placeholder='Enter here your post description'
+                            placeholder='Write a caption ...'
                             onChange={onChange}
                             value={message}
+                            style={{ width: '100%', height: '200px' }}
                         />
                     </label>
-                    <label className='postImg'>Upload an Image:</label>
+                    <span className='imgContent'>Upload an Image:</span>
+                    <label className='fileInputLabel'>
                     <input
                         className="imgPost"
                         type="file"
                         accept="image/*"
                         name="post_img"
                         onChange={handleImageChange}
+                        style={{ display: 'none' }}
                     />
+                    Choose file
+                   </label>
                     {imageURL && (
                         <img
                             src={imageURL}
                             alt="Preview"
-                            className=""
-                            style={{ maxHeight: '100px' }}
+                            className="imgFormPost"
+                            style={{ maxHeight: '200px' }}
                         />
                     )}
                     <button type="submit" className="postFormBtn" >

@@ -1,0 +1,12 @@
+.commentsContent{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #0dc6c3;
+    height: fit-content;
+    max-width: 1000px;
+    margin-bottom: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+

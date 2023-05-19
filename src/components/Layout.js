@@ -4,33 +4,74 @@ import LogIn from "./accounts/LogIn.js";
 import SignUp from "./accounts/SignUp";
 import LanguageIcon from '@mui/icons-material/Language';
 import logo from '../img/Example-logo.png'
+import { useState } from "react";
+
 
 const Layout = () => {
+
+    // determine the current URL path and perform conditional rendering or other logic based on the path.
     const { pathname } = useLocation();
+
+    //handling responsive hamburger menu
+    const [menuOpen, setMenuOpen] = useState(false);
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    //Close the responsive nav bar when a link is clicked
+    const handleLinkClick = () => {
+        setMenuOpen(false);
+    };
 
     return (
         <div className='layoutWrapper'>
             <div className='headerWrapper'>
-                <div className='headerLeft'>
-                    <Link className='logoLink' to='/'>
-                        <img className='logoImg' src={logo} />
-                    </Link>
-                </div>
+                <nav className="navbar">
+                    <div className="navMenuContainer">
+                        <Link className="logoLink" to="/">
+                            <img className="logoImg" src={logo} alt="Logo" />
+                        </Link>
 
-                <nav className='header'>
-                    <div className='headerCenter'>
-                        <Link className='homeLink' to='/'>Blog</Link>
-                        <Link className='aboutLink' to='/about'>About Us</Link>
-                        <Link className='agenciesLink' to='/aupairProgram'>Au Pair Program</Link>
-                        <Link className='contactLink' to='/contact'>Contact</Link>
+                        <ul className={`navMenu ${menuOpen ? 'active' : ''}`}>
+                            <li className="navItem">
+                                <Link className="homeLink" to="/" onClick={handleLinkClick}>
+                                    Blog
+                                </Link>
+                            </li>
+                            <li className="navItem">
+                                <Link className="aboutLink" to="/about" onClick={handleLinkClick}>
+                                    About Us
+                                </Link>
+                            </li>
+                            <li className="navItem">
+                                <Link className="programLink" to="/aupairProgram" onClick={handleLinkClick}>
+                                    Au Pair Program
+                                </Link>
+                            </li>
+                            <li className="navItem">
+                                <Link className="contactLink" to="/contact" onClick={handleLinkClick}>
+                                    Contact
+                                </Link>
+                            </li>
+                            <li className="navItem">
+                                {pathname === '/blog' && (
+                                    <LogIn className='logInLink' />
+                                )}
+                            </li>
+
+                            <li className="navItem">
+                                {pathname === '/blog' && (
+                                    <SignUp className='signUpLink' />
+                                )}
+                            </li>
+                        </ul>
                     </div>
 
-                    {pathname === '/blog' && (
-                        <div className='headerRight'>
-                            <LogIn className='logInLink' />
-                            <SignUp className='signUpLink' />
-                        </div>
-                    )}
+                    <div className={`hamburgerMenu ${menuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                    </div>
                 </nav>
             </div>
 

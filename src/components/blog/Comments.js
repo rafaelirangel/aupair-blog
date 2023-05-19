@@ -1,28 +1,41 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import { getComments } from "./actions";
-import { getComments } from "../../actions/posts";
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getComments } from '../../actions/posts';
 
-const Comment = ({ postId }) => {
-    const dispatch = useDispatch();
-    const comments = useSelector((state) => state.comments);
-
+function Comments({ postId, comments, getComments }) {
     useEffect(() => {
-        dispatch(getComments(postId));
-        console.log("Fetching comments for post:", postId);
-    }, [dispatch, postId]);
+        getComments(postId);
+    }, [getComments, postId]);
+
     return (
         <div>
-            <h1>Comments</h1>
-            {comments.map((comment) => (
-                
-                <div key={comment.id}>
-                    <h3>{comment.comment}</h3>
-                    {/* <p>{comment.body}</p> */}
+            {comments.map(comment => (
+                <div key={comment.id} className='commentWrapper'>
+                    <p>{comment.comment}</p>
                 </div>
             ))}
         </div>
     );
+}
+
+Comments.propTypes = {
+    postId: PropTypes.number.isRequired,
+    comments: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            comment: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    getComments: PropTypes.func.isRequired,
 };
 
-export default Comment;
+const mapStateToProps = (state, ownProps) => {
+    const postId = ownProps.match.params.postId;
+    return {
+        postId,
+        comments: state.postsReducer.comments[postId] || [],
+    };
+};
+
+export default connect(mapStateToProps, { getComments })(Comments);

@@ -14,7 +14,6 @@
 
 .modalContent {
     width: fit-content;
-    /* height: 100vh, fit-content; */
     height: fit-content;
     text-align: center;
     border-radius: 10px;
@@ -35,11 +34,6 @@
     font-family: 'Mate SC', sans-serif;
 }
 
-/* .postFormWrapper{
-    display: inline;
-} */
-
-
 .postTitle {
     font-family: 'Inconsolata', sans-serif;
     font-size: 18px;
@@ -59,8 +53,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    /* margin: 20px auto; */
     border-color: lightseagreen;
     text-align: left;
     margin-bottom: 3px;
@@ -74,33 +66,45 @@
     font-size: 17px;
     outline-color: lightseagreen;
     border-color: black;
-  
-    
 }
 
-.descriptionInput{
-        padding: 150px 70px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-size: 17px;
-        outline-color: lightseagreen;
-        border-color: black;
-        /* text-align: center; */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
+.descriptionInput {
+    padding: 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 17px;
+    outline-color: lightseagreen;
+    border-color: black;
 }
 
-/* .postImg{
-    margin: 0 auto;
+.fileInputLabel {
     display: flex;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: aqua;
+    width: fit-content;
+    transition: all 0.3s ease-in-out;
 }
 
-.imgPost{
-    margin: 0;
-    padding: 0;
-} */
+.fileInputLabel:hover{
+    transform: scale(1.05);
+}
+
+.imgContent {
+    font-size: 18px;
+    color: lightseagreen;
+    font-weight: 600;
+}
+
+.imgFormPost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10x auto;
+}
+
 
 .postFormBtn {
     background-color: #e9c46a;
@@ -138,12 +142,3 @@
 .closeBtn:hover {
     color: grey;
 }
-
-
-
-/* 
-
-.formContent {
-    background-color: white;
-    padding: 20px;
-}  */
