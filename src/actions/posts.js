@@ -26,6 +26,8 @@ import {
     ADD_LIKE, } from "./types";
 
 
+// the source of information for the Store
+
 //Fetching data from the backend
 const client = axios.create({
     baseURL: "http://localhost:8000"

@@ -11,6 +11,8 @@ import { combineReducers } from "redux";
 import postsReducer from './posts';
 // import authReducer from './auth';
 
+
+//  that specify how the state is changed in response to actions
 export default combineReducers({
     postsReducer,
     // authReducer,

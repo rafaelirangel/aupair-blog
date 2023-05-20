@@ -54,15 +54,17 @@ const Layout = () => {
                                 </Link>
                             </li>
                             <li className="navItem">
-                                {pathname === '/blog' && (
+                                {/* {pathname === '/blog' && (
                                     <LogIn className='logInLink' />
-                                )}
+                                )} */}
+                                <Link to='/signup'>Signup</Link>
                             </li>
 
                             <li className="navItem">
-                                {pathname === '/blog' && (
+                                {/* {pathname === '/blog' && (
                                     <SignUp className='signUpLink' />
-                                )}
+                                )} */}
+                                <Link to='/login'>Login</Link>
                             </li>
                         </ul>
                     </div>

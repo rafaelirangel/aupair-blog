@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import LogIn from './components/accounts/LogIn';
 import SignUp from './components/accounts/SignUp';
 import Comments from './components/blog/Comments';
+import { Dashboard } from '@mui/icons-material';
 // import { loadUser } from './actions/auth'
 
 function App() {
@@ -22,10 +23,11 @@ function App() {
             <Route path='/about' element={<About />} />
             <Route path='/aupairProgram' element={<AuPair />} />
             <Route path='/contact' element={<Contact />} />
-            <Route path='/blog' element={<Blog />} />
-            <Route path='/register' element={<SignUp />} />
+            <Route path='/signup' element={<SignUp />} />
             <Route path='/login' element={<LogIn />} />
+            <Route path='/dashboard' element={<Dashboard  />} />
             <Route path='/comments/:postId' element={<Comments/>} />
+          <Route path='/blog' element={<Blog />} />
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>

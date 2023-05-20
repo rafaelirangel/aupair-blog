@@ -23,6 +23,7 @@ import {
 // If none of the defined action types match the dispatched action, the reducer simply returns the current state object.
 
 
+//Specify how the state is changed in response to actions
 const initialState = {
     posts: []
 }

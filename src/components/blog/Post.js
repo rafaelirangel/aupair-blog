@@ -157,11 +157,11 @@ function PostList({ posts, getPosts, getComments, deletePosts }) {
                                     </div>
 
                                     {/* Render comments for this post */}
-                                    {/* {post.comments && post.comments.map(comment => (
+                                    {post.comments && post.comments.map(comment => (
                                         <div key={comment.id} className='commentWrapper'>
                                             <p>{comment.comment}</p>
                                         </div>
-                                    ))} */}
+                                    ))}
 
 
                                     <div className='postFooterRight'>
