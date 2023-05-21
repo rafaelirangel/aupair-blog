@@ -151,7 +151,9 @@ function PostList({ posts, getPosts, getComments, deletePosts }) {
 
                                     {/* Link for the comments of the post */}
                                     <div class='postFooterCenter'>
-                                        <Link to={`/comments/${post.id}`} className='commentLink'>View Comments...</Link>
+                                        <Link to={`/comments/${post.id}`} className='commentLink'>
+                                            View Comments...
+                                        </Link>
                                     </div>
 
                                     {/* Render comments for this post */}
