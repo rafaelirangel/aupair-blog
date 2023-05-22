@@ -2,23 +2,46 @@ import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getComments, addComment, getPosts } from '../../actions/posts';
+import axios from 'axios';
+import { getComments, addComment } from '../../actions/posts';
 import './Post.css'
 
-function Comments({ post, comments, getComments, addComment, getPosts }) {
+function Comments({ post, comments, getComments, addComment }) {
   const { postId } = useParams();
 
   useEffect(() => {
     getComments(postId);
-    getPosts(postId);
-  }, [getPosts, getComments, postId]);
+  }, [getComments, postId]);
 
   const [newComment, setNewComment] = useState('');
+  const [commentList, setCommentList] = useState([]);
 
+  useEffect(() => {
+    setCommentList(comments);
+  }, [comments]);
+  
   const handleAddComment = () => {
-    addComment(postId, newComment);
-    setNewComment('');
+    const commentData = {
+      comment: newComment,
+      post: postId,
+    };
+  
+    axios
+      .post(`http://localhost:8000/posts/${postId}/comments/`, commentData)
+      .then(response => {
+        const newComment = response.data; // Assuming the server returns the newly added comment
+        setCommentList(prevComments => [...prevComments, newComment]);
+        // Clear the comment input field
+        setNewComment('');
+  
+        // Fetch the updated comments
+        getComments(postId);
+      })
+      .catch(error => {
+        // Handle the error
+      });
   };
+  
 
   return (
     <div>
@@ -38,7 +61,9 @@ function Comments({ post, comments, getComments, addComment, getPosts }) {
         <button onClick={handleAddComment}>Add Comment</button>
       </div>
 
-      {comments.map((comment) => (
+      {comments
+      .filter(comment => comment.post === Number(postId)) // Filter comments by post ID
+      .map((comment) => (
         <div key={comment.id} className='commentWrapper'>
           <p>{comment.comment}</p>
         </div>
@@ -65,8 +90,8 @@ Comments.propTypes = {
 const mapStateToProps = (state) => {
   return {
     post: state.postsReducer.post,
-    comments: state.postsReducer.comments,
+    comments: state.postsReducer.comments || [],
   };
 };
 
-export default connect(mapStateToProps, { getComments, addComment, getPosts })(Comments);
+export default connect(mapStateToProps, { getComments, addComment })(Comments);
