@@ -1,18 +1,14 @@
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from './components';
+import  Layout  from './components/Layout.js';
 import { NotFound, About, AuPair, Contact, Blog } from './pages';
-import { useEffect } from 'react';
-import LogIn from './components/accounts/LogIn';
-import SignUp from './components/accounts/SignUp';
 import Comments from './components/blog/Comments';
 import { Dashboard } from '@mui/icons-material';
-// import { loadUser } from './actions/auth'
+import {LogIn, SignUp} from './components/accounts'
+import { ToastContainer, toast } from "react-toastify";
+
 
 function App() {
-  // useEffect(() => {
-  //    store.dispatch(loadUser());
-  // }, [loadUser]);
 
   return (
    
@@ -27,10 +23,11 @@ function App() {
             <Route path='/login' element={<LogIn />} />
             <Route path='/dashboard' element={<Dashboard  />} />
             <Route path='/comments/:postId' element={<Comments/>} />
-          <Route path='/blog' element={<Blog />} />
+            <Route path='/blog' element={<Blog />} />
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>
+        <ToastContainer />
       </div>
   
   );

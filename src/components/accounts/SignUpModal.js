@@ -1,43 +1,43 @@
 // import './SignUpModal.css'
-// import { useState } from 'react';
 // import LogIn from './LogIn'
-// import { Link } from 'react-router-dom';
+// import { useState, useEffect } from 'react';
+// import { Link, useLocation, useNavigate, Routes, Route } from 'react-router-dom';
+// // import SignUpModal from './SignUpModal.js'
+// import './SignUp.css'
+// import { Container, Button, Row, Col, Form, FormControl } from "react-bootstrap";
+// import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
+// import { signupNewUser } from '../../actions/auth.js';
 
-// const SignUpModal = (props) => {
+// const SignUpModal = ({ signupNewUser, onClose }) => {
+
+//     useEffect(() => {
+//         signupNewUser();
+//     }, [signupNewUser]);
+
+
 //     const handleClose = () => {
-//         if (props.onClose) {
-//             props.onClose();
+//         if (onClose) {
+//             onClose();
 //         }
 //     }
 
-//     const [signupData, setSignupData] = useState({
-//         username: '',
-//         email: '',
-//         password: '',
-//         password2: ''
-//     })
+//     const [signupData, setSignupData] = useState({ username: "", password: "" })
+//     const { username, password } = signupData;
 
-//     //Destructuring the props
-//     const { username, email, password, password2 } = signupData
-
-//     const onSubmit = (e) => {
-//         e.preventDefault();
-//         console.log('submit')
-//         // if (password !== password2) {
-//         //     return alert('Passwords do not match');
-//         // } else {
-//         //     const newUser = {
-//         //         username,
-//         //         email,
-//         //         password,
-//         //     };
-//         //     register(newUser)
-//         // }
+//     const onChange = (e) => {
+//         setSignupData({ ...signupData, [e.target.name]: e.target.value });
 //     }
 
-//     const onChange = (e) =>
-//         setSignupData({ ...signupData, [e.target.name]: e.target.value });
-
+//     const onSignupClick = (e) => {
+//         e.preventDefault()
+//         const userData = {
+//             username: username,
+//             password: password
+//         }
+//         signupNewUser(userData)
+//         console.log('Sign up' + username + ' ' + password);
+//     }
 
 //     return (
 //         <div className='modalWrapper'>
@@ -47,21 +47,21 @@
 //                     <h1 className='signupTitle'>New Here?</h1>
 //                     <p className='signupText'>Create an account and share your experiences</p>
 //                 </div>
-//                 <form className='signupForm' onSubmit={onSubmit}>
+//                 <form className='signupForm' onClick={onSignupClick}>
 
 //                     {/* User Name:  */}
 //                     <label className='userName'>
 //                         <input
 //                             className='userInput'
-//                             type='text'
-//                             placeholder='Enter your user name'
-//                             name='username'
-//                             onChange={onChange}
+//                             type="text"
+//                             name="username"
+//                             placeholder="Enter user name"
 //                             value={username}
+//                             onChange={onChange}
 //                         />
 //                     </label>
 
-//                     {/* Email:  */}
+//                     {/* Email: 
 //                     <label className='email'>
 //                         <input className='userInput'
 //                             type='text'
@@ -70,21 +70,21 @@
 //                             onChange={onChange}
 //                             value={email}
 //                         />
-//                     </label>
+//                     </label> */}
 
 //                     {/* Password: */}
 //                     <label className='password'>
 //                         <input
 //                             className='userInput'
-//                             type='text'
-//                             placeholder='Enter your password'
-//                             name='password'
-//                             onChange={onChange}
+//                             type="password"
+//                             name="password"
+//                             placeholder="Enter password"
 //                             value={password}
+//                             onChange={onChange}
 //                         />
 //                     </label>
 
-//                     {/* Password: */}
+//                     {/* Password:
 //                     <label className='password'>
 //                         <input
 //                             className='userInput'
@@ -94,11 +94,12 @@
 //                             onChange={onChange}
 //                             value={password2}
 //                         />
-//                     </label>
+//                     </label> */}
 //                     <button className='signupBtn' type='submit' value='Submit'>SIGN UP</button>
 //                     <p>
 //                         Already have an account?
-//                         <LogIn className='logInLink' onClick={handleClose} />
+//                         <Link to="/login" onClick={handleClose}>Login</Link>
+//                         {/* <LogIn className='logInLink' onClick={handleClose} /> */}
 //                         {/* <Link to='/login' onClick={handleClose}>
 //                             login
 //                         </Link> */}

@@ -9,11 +9,13 @@
 //passing all the reducers file into this index.js
 import { combineReducers } from "redux";
 import postsReducer from './posts';
-// import authReducer from './auth';
+import { signupReducer } from "./signupReducer";
+import { loginReducer } from "./loginReducer";
 
 
 //  that specify how the state is changed in response to actions
 export default combineReducers({
     postsReducer,
-    // authReducer,
+    createUser: signupReducer,
+    auth: loginReducer
 })
