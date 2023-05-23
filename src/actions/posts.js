@@ -28,7 +28,7 @@ import {
 
 //Fetching data from the backend
 const client = axios.create({
-    baseURL: "https://carebeyondborders-back.vercel.app"
+    baseURL: "https://carebeyondborders.herokuapp.com"
 });
 
 // GET POSTS

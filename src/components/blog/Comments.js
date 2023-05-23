@@ -27,7 +27,7 @@ function Comments({ post, comments, getComments, addComment }) {
     };
   
     axios
-      .post(`https://carebeyondborders-back.vercel.app/posts/${postId}/comments/`, commentData)
+      .post(`https://carebeyondborders.herokuapp.com/posts/${postId}/comments/`, commentData)
       .then(response => {
         const newComment = response.data; // Assuming the server returns the newly added comment
         setCommentList(prevComments => [...prevComments, newComment]);
