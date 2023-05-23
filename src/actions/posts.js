@@ -28,7 +28,7 @@ import {
 
 //Fetching data from the backend
 const client = axios.create({
-    baseURL: "http://localhost:8000"
+    baseURL: "https://carebeyondborders.herokuapp.com"
 });
 
 // GET POSTS
