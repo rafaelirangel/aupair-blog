@@ -27,7 +27,7 @@ function Comments({ post, comments, getComments, addComment }) {
     };
   
     axios
-      .post(`https://carebeyondborders-back.vercel.app/posts/${postId}/comments/`, commentData)
+      .post(`http://localhost:8000/posts/${postId}/comments/`, commentData)
       .then(response => {
         const newComment = response.data; // Assuming the server returns the newly added comment
         setCommentList(prevComments => [...prevComments, newComment]);
@@ -46,12 +46,12 @@ function Comments({ post, comments, getComments, addComment }) {
   return (
     <div>
       {post && (
-        <div className='commentWrapper'>
+        <div className='postWrapper'>
           <p>{post.content}</p>
         </div>
       )}
 
-      <div className='commentWrapper'>
+      <div className='submission-form'>
         <input
           type='text'
           value={newComment}

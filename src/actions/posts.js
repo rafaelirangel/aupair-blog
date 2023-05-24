@@ -28,7 +28,7 @@ import {
 
 //Fetching data from the backend
 const client = axios.create({
-    baseURL: "https://carebeyondborders-back.vercel.app"
+    baseURL: "http://localhost:8000"
 });
 
 // GET POSTS
