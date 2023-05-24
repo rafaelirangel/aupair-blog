@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { getComments, addComment } from '../../actions/posts';
-import './Post.css'
+import './Comments.css'
 
 function Comments({ post, comments, getComments, addComment }) {
   const { postId } = useParams();
@@ -46,12 +46,12 @@ function Comments({ post, comments, getComments, addComment }) {
   return (
     <div>
       {post && (
-        <div className='commentWrapper'>
+        <div className='postWrapper'>
           <p>{post.content}</p>
         </div>
       )}
 
-      <div className='commentWrapper'>
+      <div className='submission-form'>
         <input
           type='text'
           value={newComment}
