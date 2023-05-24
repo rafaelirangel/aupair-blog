@@ -58,14 +58,19 @@ const Layout = () => {
                                     <LogIn className='logInLink' />
                                 )} */}
                                 <Link to='/signup'>Signup</Link>
+                                
                             </li>
 
                             <li className="navItem">
                                 {/* {pathname === '/blog' && (
                                     <SignUp className='signUpLink' />
                                 )} */}
-                                <Link to='/login'>Login</Link>
+                                <LogIn />
                             </li>
+
+                            {/* <li className="navItem">
+                                <Link> Disable </Link>
+                            </li> */}
                         </ul>
                     </div>
 
