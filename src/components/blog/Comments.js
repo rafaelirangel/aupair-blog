@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { getComments, addComment } from '../../actions/posts';
+import { getComments, addComment, deleteComment } from '../../actions/posts';
 import './Comments.css'
 
-function Comments({ post, comments, getComments, addComment }) {
+function Comments({ post, comments, getComments, addComment, deleteComment }) {
   const { postId } = useParams();
 
   useEffect(() => {
@@ -41,6 +41,20 @@ function Comments({ post, comments, getComments, addComment }) {
         // Handle the error
       });
   };
+
+  const handleDeleteComment = (postId, commentId) => {
+    console.log('postId:', postId);
+    console.log('commentId:', commentId);
+    axios
+      .delete(`http://localhost:8000/posts/${postId}/comments/${commentId}/`)
+      .then(() => {
+        // Fetch the updated comments
+        getComments(postId);
+      })
+      .catch(error => {
+        // Handle the error
+      });
+  };
   
 
   return (
@@ -67,6 +81,7 @@ function Comments({ post, comments, getComments, addComment }) {
       .map((comment) => (
         <div key={comment.id} className='commentWrapper'>
           <p>{comment.comment}</p>
+          <button onClick={() => handleDeleteComment(postId, comment.id)}>Delete</button>
         </div>
       ))}
     </div>
@@ -86,6 +101,7 @@ Comments.propTypes = {
   getComments: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -95,4 +111,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getComments, addComment })(Comments);
+export default connect(mapStateToProps, { getComments, addComment, deleteComment })(Comments);
