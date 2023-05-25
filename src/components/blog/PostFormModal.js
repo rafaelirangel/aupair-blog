@@ -24,12 +24,6 @@ const PostFormModal = ({ addPosts, onClose }) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
 
-    // const onChange = (e) => {
-    //     const { name, value } = e.target;
-    //     const truncatedValue = value.slice(0, 300); // Limit the message to 300 characters
-    //     setFormData({ ...formData, [name]: truncatedValue });
-    // };
-
     const [imageURL, setImageURL] = useState('');
 
     const handleImageChange = (e) => {

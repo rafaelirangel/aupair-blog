@@ -24,6 +24,9 @@
     display: inline;
     max-height: 80%;
     overflow: auto;
+    background-color: white;
+    padding: 20px;
+
 
 }
 

@@ -1,117 +1,92 @@
-// import { useState, useEffect } from 'react';
-// import { Link, useLocation, useNavigate} from 'react-router-dom';
-// import SignUpModal from './SignUpModal.js'
-// import './SignUp.css'
-// import { Container, Button, Row, Col, Form, FormControl } from "react-bootstrap";
-// import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-// import { signupNewUser } from '../../actions/signupActions.js';
+// import './LogInModal.css';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { signup } from '../../actions/authActions';
+import { Navigate, Link } from 'react-router-dom';
 
 
-// const SignUp = ({ signupNewUser }) => {
-//     // const location = useLocation();
-//     // const navigate = useNavigate();
-//     // const [showSignupModal, setshowSignupModal] = useState(location.search === 'signup');
+const Signup = ({ signup, onClose, isAuthenticated }) => {
+    const [accountCreated, setAccountCreated] = useState(false)
 
-//     // // When the modal is closed, the showModal state is set to false,
-//     // // and the URL's search is set to an empty string
-//     // const handleModalClose = () => {
-//     //     setshowSignupModal(false);
-//     //     navigate({ search: '' });
-//     // };
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+    });
 
-//     // //This navigates to the desired URL when the button is clicked and when the modal is closed.
-//     // const handleButtonClick = () => {
-//     //     setshowSignupModal(true);
-//     //     navigate({ search: '/signup' });
-//     // };
+    const { name, email, password } = formData;
 
-//     // return (
-//     //     <div className='login-wrapper'>
-//     //         <button className='loginLink' onClick={handleButtonClick}>SignUp</button>
-//     //         {showSignupModal && <SignUpModal onClose={handleModalClose} />}
-//     //     </div>
-//     // );
+    const onChange = (e) =>
+        setFormData({ ...formData, [e.target.name]: e.target.value });
 
-//     useEffect(() => {
-//         signupNewUser();
-//     }, [signupNewUser]);
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        signup(name, email, password);
+        setAccountCreated(true)
+    };
+
+    if (accountCreated) {
+        return <Navigate to="/login" />
+    }
 
 
-//     const [signupData, setSignupData] = useState({ username: "", password: "" })
-//     const { username, password } = signupData;
+    // Redirect to dashboard if authenticated
+    if (isAuthenticated) {
+        return <Navigate to="/dashboard" />
+    }
 
-//     // const [showErrorToast, setShowErrorToast] = useState(false);
+    return (
+        <div className='container mt-5'>
+            <h1>Sign Up</h1>
+            <form onSubmit={e => onSubmit(e)}>
+                <div className='form-group'>
+                    <input
+                        className='form-control mb-3'
+                        type='text'
+                        placeholder='Name*'
+                        name='name'
+                        value={name}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                </div>
+                <div className='form-group'>
 
-//     const onChange = (e) => {
-//         setSignupData({ ...signupData, [e.target.name]: e.target.value });
-//     }
+                    <input
+                        className='form-control mb-3'
+                        type='email'
+                        placeholder='Email*'
+                        name='email'
+                        value={email}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                </div>
+                <div className='form-group'>
+                    <input
+                        className='form-control mb-3'
+                        type='password'
+                        placeholder='Password*'
+                        name='password'
+                        value={password}
+                        onChange={e => onChange(e)}
+                        minLength='6'
+                        required
+                    />
+                </div>
 
-//     const onSignupClick = (e) => {
-//         e.preventDefault()
-//         const userData = {
-//             username: username,
-//             password: password
-//         }
-//         signupNewUser(userData)
-//         console.log('Sign up' + username + ' ' + password);
-//     }
+                <button className='btn btn-primary' type='submit'>Register</button>
+            </form>
 
-//     return (
-//         <Container>
-//             <Row>
-//                 <Col md="4">
-//                     <h1>Sign up</h1>
-//                     <Form>
-//                         <Form.Group controlId="usernameId">
-//                             <Form.Label>User name</Form.Label>
-//                             <Form.Control
-//                                 // isInvalid={createUser.usernameError}
-//                                 type="text"
-//                                 name="username"
-//                                 placeholder="Enter user name"
-//                                 value={username}
-//                                 onChange={onChange}
-//                             />
-//                             <FormControl.Feedback type="invalid"></FormControl.Feedback>
-//                         </Form.Group>
+            <p className='mt-4 '>
+                Already have an account? <Link to='/login'>Sign In</Link>
+            </p>
+        </div>
+    );
+};
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
 
-//                         <Form.Group controlId="passwordId">
-//                             <Form.Label>Your password</Form.Label>
-//                             <Form.Control
-//                                 // isInvalid={createUser.passwordError}
-//                                 type="password"
-//                                 name="password"
-//                                 placeholder="Enter password"
-//                                 value={password}
-//                                 onChange={onChange}
-//                             />
-//                             <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
-//                         </Form.Group>
-//                     </Form>
-//                     <Button color="primary" onClick={onSignupClick}>
-//                         Sign up
-//                     </Button>
-//                     <p className="mt-2">
-//                         Already have an account? <Link to="/login">Login</Link>
-//                     </p>
-//                 </Col>
-//             </Row>
-//         </Container>
-//     );
-// };
-
-//     // connect action and reducer
-//     SignUp.propTypes = {
-//         signupNewUser: PropTypes.func.isRequired,
-//         createUser: PropTypes.object.isRequired
-//     };
-
-//     const mapStateToProps = (state) => ({
-//         createUser: state.createUser
-//     });
-
-
-
-// export default connect(mapStateToProps, {signupNewUser})(SignUp);
-
+export default connect(mapStateToProps, { signup })(Signup);

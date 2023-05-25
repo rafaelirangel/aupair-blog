@@ -3,24 +3,19 @@ import {
     LOGIN_FAIL,
     SET_CURRENT_USER_FAIL,
     SET_CURRENT_USER_SUCCESS,
-    AUTHENTICATED_SUCCESS,
-    AUTHENTICATED_FAIL,
-    LOGOUT
+    LOGOUT,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAIL
 } from './types'
 import axios from 'axios';
+
 
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
 });
 
 
-
-export const checkAuthenticated = () => async dispatch => {
-    
-}
-
-
-//LOAD/LOGIN the user after the token is ok
+//LOAD USER Action if login was a success 
 export const load_user = () => async dispatch => {
     if (localStorage.getItem('access')){
         const config = {
@@ -32,7 +27,7 @@ export const load_user = () => async dispatch => {
         };
 
         try {
-            const res = await client.get('/auth/v1/home/', config)
+            const res = await client.get('/auth/v1/home', config)
 
             dispatch({
                 type: SET_CURRENT_USER_SUCCESS,
@@ -52,12 +47,12 @@ export const load_user = () => async dispatch => {
 }
 
 
+//LOGIN ACTION
 export const login = (email, password) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
-        }
-    }
+        }}
 
     const body = JSON.stringify({email, password});
 
@@ -75,8 +70,38 @@ export const login = (email, password) => async dispatch => {
         dispatch({
             type: LOGIN_FAIL  
         })
-
     }
 };
 
 
+//LOGIN ACTION
+export const signup = (name, email, password) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    const body = JSON.stringify({ name, email, password });
+
+    try {
+        const res = await client.post('auth/v1/users/signup/', body, config)
+
+        dispatch({
+            type: SIGNUP_SUCCESS,
+            payload: res.data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: SIGNUP_FAIL
+        })
+    }
+};
+
+//LOGOUT Action
+export const logout = () => dispatch => {
+    dispatch({
+        type: LOGOUT
+    })
+};

@@ -82,12 +82,12 @@ function PostList({ posts, getPosts, getComments, deletePosts }) {
                 {/* Login */}
                 <h2 className='postCenterText'>
                     Already have an account?
-                    <Link to='/login'>Login</Link>
+                    <Link className='authBtns' to='/login'>Login</Link>
                 </h2>
 
                 {/* SignUp */}
                 <h2 className='postCenterText'>Don't have an account?
-                    <Link to='/signup'>Signup</Link>
+                    <Link className='authBtns' to='/signup'>Signup</Link>
                 </h2>
             </div>
 

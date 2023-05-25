@@ -14,25 +14,14 @@ export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const GET_LIKE = 'GET_LIKE'
 export const ADD_LIKE = 'ADD_LIKE'
 
-
-// CREATE_USER_SUBMITTED, which means that the request to create a new user was send and we are waiting for server response.After this action type is dispatched, we should disable Signup button till server responded.
-// CREATE_USER_SUCCESS - the action is called after HTTP 201 CREATED response from server, which means that user was successfully created.
-// CREATE_USER_ERROR - the action is called when there was an error during creation of the user and it was not created.
-
 //ACTION FOR SIGNUP 
-export const CREATE_USER_SUBMITTED = "CREATE_USER_SUBMITTED";
-export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
-export const CREATE_USER_ERROR = "CREATE_USER_ERROR";
-
-
-// SET_TOKEN - it will be dispatched after successful login.
-// SET_CURRENT_USER - it will set the user obejct in the store.It will be called after successful request to /auth/v1/users/me/ endpoint.
-// UNSET_CURRENT_USER - will reset the state by setting its initial value.
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_FAIL = "SIGNUP_FAIL";
 
 //ACTION FOR LOGIN
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS" //it will be dispatched after successful login.
 export const LOGIN_FAIL = "LOGIN_FAIL"
-export const SET_CURRENT_USER_SUCCESS = "SET_CURRENT_USER_SUCCESS"
+export const SET_CURRENT_USER_SUCCESS = "SET_CURRENT_USER_SUCCESS" //it will set the user obejct in the store.It will be called after successful request to the endpoint.
 export const SET_CURRENT_USER_FAIL = "SET_CURRENT_USER_FAIL"
 
 
@@ -41,4 +30,4 @@ export const AUTHENTICATED_SUCCESS = "AUTHENTICATED_SUCCESS"
 export const AUTHENTICATED_FAIL = "AUTHENTICATED_FAIL"
 
 //ACTION FOR LOGOUT
-export const LOGOUT = "LOGOUT"
+export const LOGOUT = "LOGOUT" //will reset the state by setting its initial value.

@@ -16,4 +16,8 @@
         border-radius: 15px;
     }
 
+    .form-control{
+        line-height: 1.5;
+    }
+
     @media(max-width: 768px) {}
