@@ -5,7 +5,7 @@ import { NotFound, About, AuPair, Contact, Blog } from './pages';
 import Comments from './components/blog/Comments';
 import Dashboard from './components/accounts/Dashboard.js';
 import {LogIn, SignUp} from './components/accounts'
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
       </div>
   
   );
