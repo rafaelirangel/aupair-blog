@@ -1,114 +1,115 @@
-import './SignUpModal.css'
-import { useState } from 'react';
-import LogIn from './LogIn'
-import { Link } from 'react-router-dom';
+// import './SignUpModal.css'
+// import LogIn from './LogIn'
+// import { useState, useEffect } from 'react';
+// import { Link, useLocation, useNavigate, Routes, Route } from 'react-router-dom';
+// // import SignUpModal from './SignUpModal.js'
+// import './SignUp.css'
+// import { Container, Button, Row, Col, Form, FormControl } from "react-bootstrap";
+// import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
+// import { signupNewUser } from '../../actions/auth.js';
 
-const SignUpModal = (props) => {
-    const handleClose = () => {
-        if (props.onClose) {
-            props.onClose();
-        }
-    }
+// const SignUpModal = ({ signupNewUser, onClose }) => {
 
-    const [signupData, setSignupData] = useState({
-        username: '',
-        email: '',
-        password: '',
-        password2: ''
-    })
-
-    //Destructuring the props
-    const { username, email, password, password2 } = signupData
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        console.log('submit')
-        // if (password !== password2) {
-        //     return alert('Passwords do not match');
-        // } else {
-        //     const newUser = {
-        //         username,
-        //         email,
-        //         password,
-        //     };
-        //     register(newUser)
-        // }
-    }
-
-    const onChange = (e) =>
-        setSignupData({ ...signupData, [e.target.name]: e.target.value });
+//     useEffect(() => {
+//         signupNewUser();
+//     }, [signupNewUser]);
 
 
-    return (
-        <div className='modalWrapper'>
-            <div className='modalContent'>
-                <div className='sigupContent'>
-                    <button className='closeBtn' onClick={handleClose}>X</button>
-                    <h1 className='signupTitle'>New Here?</h1>
-                    <p className='signupText'>Create an account and share your experiences</p>
-                </div>
-                <form className='signupForm' onSubmit={onSubmit}>
+//     const handleClose = () => {
+//         if (onClose) {
+//             onClose();
+//         }
+//     }
 
-                    {/* User Name:  */}
-                    <label className='userName'>
-                        <input
-                            className='userInput'
-                            type='text'
-                            placeholder='Enter your user name'
-                            name='username'
-                            onChange={onChange}
-                            value={username}
-                        />
-                    </label>
+//     const [signupData, setSignupData] = useState({ username: "", password: "" })
+//     const { username, password } = signupData;
 
-                    {/* Email:  */}
-                    <label className='email'>
-                        <input className='userInput'
-                            type='text'
-                            placeholder='Enter your email'
-                            name='email'
-                            onChange={onChange}
-                            value={email}
-                        />
-                    </label>
+//     const onChange = (e) => {
+//         setSignupData({ ...signupData, [e.target.name]: e.target.value });
+//     }
 
-                    {/* Password: */}
-                    <label className='password'>
-                        <input
-                            className='userInput'
-                            type='text'
-                            placeholder='Enter your password'
-                            name='password'
-                            onChange={onChange}
-                            value={password}
-                        />
-                    </label>
+//     const onSignupClick = (e) => {
+//         e.preventDefault()
+//         const userData = {
+//             username: username,
+//             password: password
+//         }
+//         signupNewUser(userData)
+//         console.log('Sign up' + username + ' ' + password);
+//     }
 
-                    {/* Password: */}
-                    <label className='password'>
-                        <input
-                            className='userInput'
-                            type='text'
-                            placeholder='repeat your password'
-                            name='password2'
-                            onChange={onChange}
-                            value={password2}
-                        />
-                    </label>
-                    <button className='signupBtn' type='submit' value='Submit'>SIGN UP</button>
-                    <p>
-                        Already have an account?
-                        <LogIn className='logInLink' onClick={handleClose} />
-                        {/* <Link to='/login' onClick={handleClose}>
-                            login
-                        </Link> */}
-                        {/* <LogIn to='/login'/> */}
-                    </p>
+//     return (
+//         <div className='modalWrapper'>
+//             <div className='modalContent'>
+//                 <div className='sigupContent'>
+//                     <button className='closeBtn' onClick={handleClose}>X</button>
+//                     <h1 className='signupTitle'>New Here?</h1>
+//                     <p className='signupText'>Create an account and share your experiences</p>
+//                 </div>
+//                 <form className='signupForm' onClick={onSignupClick}>
 
-                </form>
-            </div>
-        </div>
-    )
-}
+//                     {/* User Name:  */}
+//                     <label className='userName'>
+//                         <input
+//                             className='userInput'
+//                             type="text"
+//                             name="username"
+//                             placeholder="Enter user name"
+//                             value={username}
+//                             onChange={onChange}
+//                         />
+//                     </label>
 
-export default SignUpModal
+//                     {/* Email: 
+//                     <label className='email'>
+//                         <input className='userInput'
+//                             type='text'
+//                             placeholder='Enter your email'
+//                             name='email'
+//                             onChange={onChange}
+//                             value={email}
+//                         />
+//                     </label> */}
+
+//                     {/* Password: */}
+//                     <label className='password'>
+//                         <input
+//                             className='userInput'
+//                             type="password"
+//                             name="password"
+//                             placeholder="Enter password"
+//                             value={password}
+//                             onChange={onChange}
+//                         />
+//                     </label>
+
+//                     {/* Password:
+//                     <label className='password'>
+//                         <input
+//                             className='userInput'
+//                             type='text'
+//                             placeholder='repeat your password'
+//                             name='password2'
+//                             onChange={onChange}
+//                             value={password2}
+//                         />
+//                     </label> */}
+//                     <button className='signupBtn' type='submit' value='Submit'>SIGN UP</button>
+//                     <p>
+//                         Already have an account?
+//                         <Link to="/login" onClick={handleClose}>Login</Link>
+//                         {/* <LogIn className='logInLink' onClick={handleClose} /> */}
+//                         {/* <Link to='/login' onClick={handleClose}>
+//                             login
+//                         </Link> */}
+//                         {/* <LogIn to='/login'/> */}
+//                     </p>
+
+//                 </form>
+//             </div>
+//         </div>
+//     )
+// }
+
+// export default SignUpModal

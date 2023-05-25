@@ -1,33 +1,92 @@
-import { useState } from 'react';
-import { Link, useLocation, useNavigate, Routes, Route } from 'react-router-dom';
-import SignUpModal from './SignUpModal.js'
-import './SignUp.css'
+// import './LogInModal.css';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { signup } from '../../actions/authActions';
+import { Navigate, Link } from 'react-router-dom';
 
-const SignUp = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const [showSignupModal, setshowSignupModal] = useState(location.search === 'signup');
 
-    // When the modal is closed, the showModal state is set to false,
-    // and the URL's search is set to an empty string
-    const handleModalClose = () => {
-        setshowSignupModal(false);
-        navigate({ search: '' });
+const Signup = ({ signup, onClose, isAuthenticated }) => {
+    const [accountCreated, setAccountCreated] = useState(false)
+
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+    });
+
+    const { name, email, password } = formData;
+
+    const onChange = (e) =>
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        signup(name, email, password);
+        setAccountCreated(true)
     };
 
-    //This navigates to the desired URL when the button is clicked and when the modal is closed.
-    const handleButtonClick = () => {
-        setshowSignupModal(true);
-        navigate({ search: '/signup' });
-    };
+    if (accountCreated) {
+        return <Navigate to="/login" />
+    }
+
+
+    // Redirect to dashboard if authenticated
+    if (isAuthenticated) {
+        return <Navigate to="/dashboard" />
+    }
 
     return (
-        <div className='login-wrapper'>
-            <button className='loginLink' onClick={handleButtonClick}>SignUp</button>
-            {showSignupModal && <SignUpModal onClose={handleModalClose} />}
+        <div className='container mt-5'>
+            <h1>Sign Up</h1>
+            <form onSubmit={e => onSubmit(e)}>
+                <div className='form-group'>
+                    <input
+                        className='form-control mb-3'
+                        type='text'
+                        placeholder='Name*'
+                        name='name'
+                        value={name}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                </div>
+                <div className='form-group'>
+
+                    <input
+                        className='form-control mb-3'
+                        type='email'
+                        placeholder='Email*'
+                        name='email'
+                        value={email}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                </div>
+                <div className='form-group'>
+                    <input
+                        className='form-control mb-3'
+                        type='password'
+                        placeholder='Password*'
+                        name='password'
+                        value={password}
+                        onChange={e => onChange(e)}
+                        minLength='6'
+                        required
+                    />
+                </div>
+
+                <button className='btn btn-primary' type='submit'>Register</button>
+            </form>
+
+            <p className='mt-4 '>
+                Already have an account? <Link to='/login'>Sign In</Link>
+            </p>
         </div>
     );
 };
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
 
-export default SignUp;
-
+export default connect(mapStateToProps, { signup })(Signup);

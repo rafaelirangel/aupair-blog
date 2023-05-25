@@ -1,10 +1,11 @@
 import React from 'react'
-import Dashboard from '../components/blog/Dashboard'
+// import Dashboard from '../components/blog/Dashboard'
+import Post from '../components/blog/Post.js'
 
 const Blog = () => {
   return (
     <div>
-          <Dashboard />
+          <Post />
     </div>
   )
 }

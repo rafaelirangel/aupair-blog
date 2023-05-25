@@ -23,6 +23,7 @@ const PostFormModal = ({ addPosts, onClose }) => {
     const onChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
+
     const [imageURL, setImageURL] = useState('');
 
     const handleImageChange = (e) => {

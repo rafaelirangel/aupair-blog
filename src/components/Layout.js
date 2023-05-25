@@ -1,13 +1,37 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, Navigate } from "react-router-dom";
 import "./Layout.css"
-import LogIn from "./accounts/LogIn.js";
-import SignUp from "./accounts/SignUp";
 import LanguageIcon from '@mui/icons-material/Language';
 import logo from '../img/Example-logo.png'
 import { useState } from "react";
+import { logout } from '../actions/authActions.js'
+import { connect } from "react-redux";
+import { Fragment } from 'react'
 
 
-const Layout = () => {
+const Layout = ({ logout, isAuthenticated }) => {
+
+    const authLinks = () => (
+        <li className='nav-item'>
+            <Link to='/' className='authBtn' onClick={logout}>Logout</Link>
+        </li>
+    )
+
+    const guestLinks = () => {
+        if (pathname === "/blog" || pathname === "/login" || pathname === "/signup") {
+            return (
+                <Fragment>
+                    <li className='nav-item'>
+                        <Link to='/login' className='authBtn'>LogIn</Link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link to='/signup' className='authBtn'>SignUp</Link>
+                    </li>
+                </Fragment>
+            );
+        } else {
+            return null;
+        }
+    }
 
     // determine the current URL path and perform conditional rendering or other logic based on the path.
     const { pathname } = useLocation();
@@ -53,17 +77,9 @@ const Layout = () => {
                                     Contact
                                 </Link>
                             </li>
-                            <li className="navItem">
-                                {pathname === '/blog' && (
-                                    <LogIn className='logInLink' />
-                                )}
-                            </li>
 
-                            <li className="navItem">
-                                {pathname === '/blog' && (
-                                    <SignUp className='signUpLink' />
-                                )}
-                            </li>
+                            {isAuthenticated ? authLinks() : guestLinks()}
+
                         </ul>
                     </div>
 
@@ -92,4 +108,8 @@ const Layout = () => {
     )
 }
 
-export default Layout
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { logout })(Layout)

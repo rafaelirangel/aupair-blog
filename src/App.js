@@ -1,17 +1,14 @@
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from './components';
+import  Layout  from './components/Layout.js';
 import { NotFound, About, AuPair, Contact, Blog } from './pages';
-import { useEffect } from 'react';
-import LogIn from './components/accounts/LogIn';
-import SignUp from './components/accounts/SignUp';
 import Comments from './components/blog/Comments';
-// import { loadUser } from './actions/auth'
+import Dashboard from './components/accounts/Dashboard.js';
+import {LogIn, SignUp} from './components/accounts'
+import { ToastContainer, toast } from "react-toastify";
+
 
 function App() {
-  // useEffect(() => {
-  //    store.dispatch(loadUser());
-  // }, [loadUser]);
 
   return (
    
@@ -22,13 +19,15 @@ function App() {
             <Route path='/about' element={<About />} />
             <Route path='/aupairProgram' element={<AuPair />} />
             <Route path='/contact' element={<Contact />} />
-            <Route path='/blog' element={<Blog />} />
-            <Route path='/register' element={<SignUp />} />
+            <Route path='/signup' element={<SignUp />} />
             <Route path='/login' element={<LogIn />} />
+            <Route path='/dashboard' element={<Dashboard  />} />
             <Route path='/comments/:postId' element={<Comments/>} />
+            <Route path='/blog' element={<Blog />} />
             <Route path='*' element={<NotFound />} />
           </Route>
         </Routes>
+        <ToastContainer />
       </div>
   
   );

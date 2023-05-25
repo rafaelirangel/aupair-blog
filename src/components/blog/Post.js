@@ -82,12 +82,12 @@ function PostList({ posts, getPosts, getComments, deletePosts }) {
                 {/* Login */}
                 <h2 className='postCenterText'>
                     Already have an account?
-                    <LogIn className='logInLink' />
+                    <Link className='authBtns' to='/login'>Login</Link>
                 </h2>
 
                 {/* SignUp */}
                 <h2 className='postCenterText'>Don't have an account?
-                    <SignUp className='signUpLink' />
+                    <Link className='authBtns' to='/signup'>Signup</Link>
                 </h2>
             </div>
 
@@ -156,13 +156,12 @@ function PostList({ posts, getPosts, getComments, deletePosts }) {
                                         </Link>
                                     </div>
 
-                                    {/* Render comments for this post */}
-                                    {/* {post.comments && post.comments.map(comment => (
+                                    {/* Render comments for this post
+                                    {post.comments && post.comments.map(comment => (
                                         <div key={comment.id} className='commentWrapper'>
                                             <p>{comment.comment}</p>
                                         </div>
                                     ))} */}
-
 
                                     <div className='postFooterRight'>
                                         <div className="dropdown">
