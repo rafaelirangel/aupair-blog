@@ -83,3 +83,4 @@ http://localhost:3000/
 ![JAVASCRIPT badge](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)  
 ![BOOTSTRAP badge](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)  
 ![GITHUB badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+![DJANGO badge](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green)
