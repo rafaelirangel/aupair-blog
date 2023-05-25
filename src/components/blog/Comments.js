@@ -54,11 +54,12 @@ function Comments({ post, comments, getComments, addComment }) {
       <div className='submission-form'>
         <input
           type='text'
+          className="comment-input"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           placeholder='Add a comment...'
         />
-        <button onClick={handleAddComment}>Add Comment</button>
+        <button className="comment-button" onClick={handleAddComment}>Add Comment</button>
       </div>
 
       {comments
