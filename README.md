@@ -1,8 +1,11 @@
 ## About
 This is a Au Pair blog webpage, where we strive to connect and support individuals participating in the Au Pair program worldwide. Our social platform was created to facilitate connections between Au Pairs nearby, allowing them to exchange ideas and gain new experiences. We understand that participating in the Au Pair program can be both exhilarating and daunting, especially when in a new country. Therefore, our platform prioritizes safety by providing a supportive community where individuals can connect and share their experiences while navigating their new environment.
 
-### Feature implementations
+## Project
+Our project is a full-stack application developed using React.js and Redux on the frontend, and Django on the backend. It combines the power of these technologies to create a robust and dynamic web application. With React.js and Redux, we ensure a smooth and interactive user experience, while Django provides a secure and efficient backend infrastructure.
 
+
+### Feature implementations
 - Location-based 
 - Filtering and Sorting
 - Validation 
@@ -59,10 +62,6 @@ http://localhost:3000/
         - makemigrations
         - migrate
         - runserver    
-```
-3. **Seed the data**
-```
-    $ node db/seed.js 
 ```
 4. **Start the server**
 ```
