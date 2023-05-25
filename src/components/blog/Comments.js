@@ -1,41 +1,97 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getComments } from '../../actions/posts';
+import axios from 'axios';
+import { getComments, addComment } from '../../actions/posts';
+import './Post.css'
 
-function Comments({ postId, comments, getComments }) {
-    useEffect(() => {
+function Comments({ post, comments, getComments, addComment }) {
+  const { postId } = useParams();
+
+  useEffect(() => {
+    getComments(postId);
+  }, [getComments, postId]);
+
+  const [newComment, setNewComment] = useState('');
+  const [commentList, setCommentList] = useState([]);
+
+  useEffect(() => {
+    setCommentList(comments);
+  }, [comments]);
+  
+  const handleAddComment = () => {
+    const commentData = {
+      comment: newComment,
+      post: postId,
+    };
+  
+    axios
+      .post(`http://localhost:8000/posts/${postId}/comments/`, commentData)
+      .then(response => {
+        const newComment = response.data; // Assuming the server returns the newly added comment
+        setCommentList(prevComments => [...prevComments, newComment]);
+        // Clear the comment input field
+        setNewComment('');
+  
+        // Fetch the updated comments
         getComments(postId);
-    }, [getComments, postId]);
+      })
+      .catch(error => {
+        // Handle the error
+      });
+  };
+  
 
-    return (
-        <div>
-            {comments.map(comment => (
-                <div key={comment.id} className='commentWrapper'>
-                    <p>{comment.comment}</p>
-                </div>
-            ))}
+  return (
+    <div>
+      {post && (
+        <div className='postWrapper'>
+          <p>{post.content}</p>
         </div>
-    );
+      )}
+
+      <div className='submission-form'>
+        <input
+          type='text'
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          placeholder='Add a comment...'
+        />
+        <button onClick={handleAddComment}>Add Comment</button>
+      </div>
+
+      {comments
+      .filter(comment => comment.post === Number(postId)) // Filter comments by post ID
+      .map((comment) => (
+        <div key={comment.id} className='commentWrapper'>
+          <p>{comment.comment}</p>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 Comments.propTypes = {
-    postId: PropTypes.number.isRequired,
-    comments: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            comment: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-    getComments: PropTypes.func.isRequired,
+  post: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+  }),
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      comment: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  getComments: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
+  getPosts: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
-    const postId = ownProps.match.params.postId;
-    return {
-        postId,
-        comments: state.postsReducer.comments[postId] || [],
-    };
+const mapStateToProps = (state) => {
+  return {
+    post: state.postsReducer.post,
+    comments: state.postsReducer.comments || [],
+  };
 };
 
-export default connect(mapStateToProps, { getComments })(Comments);
+export default connect(mapStateToProps, { getComments, addComment })(Comments);
