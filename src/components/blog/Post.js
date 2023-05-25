@@ -156,13 +156,12 @@ function PostList({ posts, getPosts, getComments, deletePosts }) {
                                         </Link>
                                     </div>
 
-                                    {/* Render comments for this post */}
+                                    {/* Render comments for this post
                                     {post.comments && post.comments.map(comment => (
                                         <div key={comment.id} className='commentWrapper'>
                                             <p>{comment.comment}</p>
                                         </div>
-                                    ))}
-
+                                    ))} */}
 
                                     <div className='postFooterRight'>
                                         <div className="dropdown">
